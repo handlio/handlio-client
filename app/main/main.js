@@ -25,13 +25,16 @@ angular.module('myApp.main', ['ngRoute', 'angular-storage'])
 
             this.hosts = HostStore.get('list') || [];
             this.new = angular.copy(defaults.host);
-            this.selected = this.hosts[0] || null;
+            this.model = {
+                keys: '',
+                selected: this.hosts[0] || null
+            };
 
             this.addHost = function (host) {
                 this.hosts.push({url: host.url, name: host.name});
                 HostStore.set('list', this.hosts);
                 this.new = angular.copy(defaults.host);
-                this.selected = this.hosts[this.hosts.length - 1];
+                this.model.selected = this.hosts[this.hosts.length - 1];
             };
 
             this.removeHost = function (host, index) {

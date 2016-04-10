@@ -17,12 +17,20 @@ Use selected host or create new one:
            ng-click="main.addHost(main.new)" ng-disabled="userForm.$invalid" value="Add">
 </form>
 
+<form name="keysForm" novalidate class="form-inline">
+    <div class="form-group" ng-class="{ 'has-error': keysForm.keys.$invalid }">
+        <input name="name" type="text" class="form-control" ng-model="main.model.keys" required>
+    </div>
+    <input type="submit" class="form-control btn btn-info"
+           ng-click="main.send(main.model.keys)" ng-disabled="keysForm.$invalid" value="Send">
+</form>
+
 <div>
     <div ng-repeat="host in main.hosts">
 
         <div class="radio">
             <label>
-                <input name="hostRadio" type="radio" value="{{host}}" ng-model="selected">
+                <input name="hostRadio" type="radio" value="{{host}}" ng-model="model.selected">
                 {{host.name}} - {{host.url}}
             </label>
             <button class="btn btn-default btn-xs"
