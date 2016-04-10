@@ -21,13 +21,43 @@ angular.module('myApp.main', ['ngRoute', 'angular-storage'])
     .controller('MainCtrl', [
         'HostStore',
         function (HostStore) {
-            this.hosts = HostStore.get('list') || [];
+            var defaults = {host: {url: '', name: ''}};
 
-            this.selected = this.hosts[0] || {ip: '', name: ''};
+            this.hosts = HostStore.get('list') || [];
+            this.new = angular.copy(defaults.host);
 
             this.addHost = function (host) {
-                this.hosts.push(host);
+                this.hosts.push({url: host.url, name: host.name});
                 HostStore.set('list', this.hosts);
+                this.new = angular.copy(defaults.host);
+                this.new = angular.copy(defaults.host);
             }
         }
-    ]);
+    ])
+
+    .directive('unique', function () {
+        return {
+            require: 'ngModel',
+            scope: {
+                unique: '='
+            },
+            link: function (scope, elm, attrs, ctrl) {
+                var list = scope.unique.list;
+                var prop = scope.unique.prop;
+
+                ctrl.$validators.unique = function (modelValue, viewValue) {
+                    if (ctrl.$isEmpty(modelValue)) {
+                        return false;
+                    }
+
+                    if (!list || list.length === 0) return true;
+
+                    var found = list.filter(function (el) {
+                        return modelValue === el[prop];
+                    });
+
+                    return found.length === 0;
+                };
+            }
+        };
+    });
