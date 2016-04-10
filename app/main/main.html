@@ -1,3 +1,5 @@
+Use selected host or create new one:
+
 <form name="userForm" novalidate class="form-inline">
     <div class="form-group"
          ng-class="{ 'has-error': userForm.name.$invalid }">
@@ -17,7 +19,18 @@
 
 <div>
     <div ng-repeat="host in main.hosts">
-        <span ng-bind="host.name"></span>
-        <span ng-bind="host.url"></span>
+
+        <div class="input-group">
+            <div class="radio">
+                <label>
+                    <input name="hostRadio" type="radio" value="{{host}}" ng-model="selected">
+                    {{host.name}} - {{host.url}}
+                </label>
+            </div>
+            <!--<span class="input-group-btn">-->
+            <button class="btn btn-default btn-xs"
+                    ng-click="main.removeHost(host)">x</button>
+            <!--</span>-->
+        </div>
     </div>
 </div>
