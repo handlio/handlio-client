@@ -1,0 +1,15 @@
+<p>This is the partial for main view.</p>
+
+<form ng-submit="">
+    <input type="text" ng-model="main.selected.name">
+    <input type="text" ng-model="main.selected.ip">
+    <input type="button" ng-click="main.addHost(main.selected)" value="Add">
+</form>
+
+
+<div>
+    <div ng-repeat="host in main.hosts">
+        <span ng-bind="host.name"></span>
+        <span ng-bind="host.ip"></span>
+    </div>
+</div>
