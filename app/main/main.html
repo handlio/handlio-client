@@ -20,17 +20,14 @@ Use selected host or create new one:
 <div>
     <div ng-repeat="host in main.hosts">
 
-        <div class="input-group">
-            <div class="radio">
-                <label>
-                    <input name="hostRadio" type="radio" value="{{host}}" ng-model="selected">
-                    {{host.name}} - {{host.url}}
-                </label>
-            </div>
-            <!--<span class="input-group-btn">-->
+        <div class="radio">
+            <label>
+                <input name="hostRadio" type="radio" value="{{host}}" ng-model="selected">
+                {{host.name}} - {{host.url}}
+            </label>
             <button class="btn btn-default btn-xs"
-                    ng-click="main.removeHost(host)">x</button>
-            <!--</span>-->
+                    ng-click="main.removeHost(host)">x
+            </button>
         </div>
     </div>
 </div>
