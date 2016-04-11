@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.main module', function () {
+describe('handlio.client.main module', function () {
 
-    beforeEach(module('myApp.main'));
+    beforeEach(module('handlio.client.main'));
 
     describe('main controller', function () {
 

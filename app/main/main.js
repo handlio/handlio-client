@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.main', ['ngRoute', 'angular-storage'])
+angular.module('handlio.client.main', ['ngRoute', 'angular-storage'])
     .factory('HostStore', [
         'store',
         function (store) {

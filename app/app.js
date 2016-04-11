@@ -1,10 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('handlio.client', [
     'ngRoute',
-    'myApp.main',
-    'myApp.version',
+    'handlio.client.main',
     'angular-storage'
 ]).config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/main'});
