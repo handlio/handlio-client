@@ -31,10 +31,6 @@ angular.module('handlio.client.main', ['ngRoute', 'angular-storage'])
             };
 
             ctrl.hidden = HostStore.get('hidden') === null ? false : HostStore.get('hidden');
-            ctrl.changeVisibility = function (visibility) {
-                ctrl.hidden = !visibility;
-                HostStore.set('hidden', ctrl.hidden);
-            };
 
             ctrl.hosts = HostStore.get('list') || [];
 
@@ -69,6 +65,11 @@ angular.module('handlio.client.main', ['ngRoute', 'angular-storage'])
             ctrl.removeHost = function (host, index) {
                 ctrl.hosts.splice(index, 1);
                 HostStore.set('list', ctrl.hosts);
+            };
+
+            ctrl.toggleConfig = function (visibility) {
+                ctrl.hidden = !visibility;
+                HostStore.set('hidden', ctrl.hidden);
             };
 
             ctrl.send = function (keys) {
@@ -117,4 +118,30 @@ angular.module('handlio.client.main', ['ngRoute', 'angular-storage'])
                 };
             }
         };
-    });
+    })
+    .directive('toggleAction', ['$timeout', function ($timeout) {
+        return {
+            scope: {
+                toggleAction: '='
+            },
+            link: function (scope, elm, attrs, ctrl) {
+                if (!scope.toggleAction)
+                    throw new Error("Callback and value were not provided.");
+
+                if (!scope.toggleAction.fn)
+                    throw new Error("Callback was not provided.");
+
+                var toggleInitialValue = scope.toggleAction.value;
+                if (typeof toggleInitialValue !== 'boolean')
+                    throw new Error("Value was not provided.");
+
+                $(elm).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
+
+                $(elm).change(function() {
+                    $timeout(function () {
+                        scope.toggleAction.fn($(elm).prop('checked'));
+                    }, 0);
+                });
+            }
+        };
+    }]);

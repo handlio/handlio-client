@@ -1,9 +1,10 @@
 <div class="container">
     <div class="row block">
-        <button class="btn btn-warning"
-                ng-click="main.changeVisibility(main.hidden)">
-            {{!main.hidden ? 'Hide' : 'Config'}}
-        </button>
+        <input type="checkbox"
+               data-toggle="toggle"
+               data-off="Configure" data-on="Hide"
+               data-offstyle="warning" data-onstyle="default"
+               toggle-action="{fn: main.toggleConfig, value: !main.hidden}">
     </div>
 
     <!-- Configuration block -->
