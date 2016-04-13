@@ -1,105 +1,112 @@
-<button class="btn btn-warning"
-        ng-click="main.changeVisibility(main.hidden)">{{!main.hidden ? 'Hide' : 'Config'}}
-</button>
-<form name="userForm" novalidate class="form-inline" ng-show="!main.hidden">
-    <div class="form-group"
-         ng-class="{ 'has-error': userForm.name.$dirty && userForm.name.$invalid }">
-
-        <input name="name" type="text" class="form-control"
-               ng-model="main.new.name" unique="{list: main.hosts, prop: 'name'}" required>
-
-    </div>
-    <div class="form-group"
-         ng-class="{ 'has-error': userForm.url.$dirty && userForm.url.$invalid }">
-        <input name="url" type="text" class="form-control"
-               ng-model="main.new.url" unique="{list: main.hosts, prop: 'url'}" required>
-    </div>
-    <input type="submit" class="form-control btn btn-info"
-           ng-click="main.addHost(main.new)" ng-disabled="userForm.$invalid" value="Add">
-</form>
-
-<div class="row">
-
-    <div class="col-xs-4">
-
-    </div>
-    <div class="col-xs-4">
-        <button class="form-control btn btn-info"
-                ng-click="main.send('{UP}')" style="margin: 10px 0;">{UP}</button>
-    </div>
-    <div class="col-xs-4">
-
+<div class="container">
+    <div class="row block">
+        <input type="checkbox"
+               data-toggle="toggle"
+               data-off="Configure" data-on="Hide"
+               data-offstyle="warning" data-onstyle="default"
+               toggle-action="{fn: main.toggleConfig, value: !main.hidden}">
     </div>
 
-</div>
+    <!-- Configuration block -->
+    <div class="row" ng-show="!main.hidden">
+        <form name="userForm" novalidate class="row">
+            <div class="col-xs-4"
+                 ng-class="{ 'has-error': userForm.name.$dirty && userForm.name.$invalid }">
 
-<form name="keysForm" novalidate class="form-inline row">
-    <!--<div class="form-group" ng-class="{ 'has-error': keysForm.keys.$invalid }">-->
-    <!--<input name="name" type="text" class="form-control" ng-model="main.model.keys" required>-->
-    <!--</div>-->
-    <!--<input type="submit" class="form-control btn btn-info"-->
-    <!--ng-click="main.send(main.model.keys)" ng-disabled="keysForm.$invalid" value="Send">-->
+                <input name="name" type="text" class="form-control"
+                       ng-model="main.new.name" unique="{list: main.hosts, prop: 'name'}" required>
 
-    <div class="col-xs-4">
-        <button class="form-control btn btn-success"
-                ng-click="main.send('{LEFT}')" style="margin: 10px 0;">{LEFT}</button>
-    </div>
-    <div class="col-xs-4">
-        <button class="form-control btn btn-danger"
-                ng-click="main.send('{ENTER}')" style="margin: 10px 0;">{ENTER}</button>
-    </div>
-    <div class="col-xs-4">
-        <button class="form-control btn btn-success"
-                ng-click="main.send('{RIGHT}')" style="margin: 10px 0;">{RIGHT}</button>
-    </div>
+            </div>
+            <div class="col-xs-4"
+                 ng-class="{ 'has-error': userForm.url.$dirty && userForm.url.$invalid }">
+                <input name="url" type="text" class="form-control"
+                       ng-model="main.new.url" unique="{list: main.hosts, prop: 'url'}" required>
+            </div>
+            <div class="col-xs-2">
+                <input type="submit" class="btn btn-warning"
+                       ng-click="main.addHost(main.new)" ng-disabled="userForm.$invalid" value="Add">
+            </div>
+        </form>
 
+        <div class="row block" style="margin-left: 0px;">
+            <div class="row" style="margin-left: 0px;"
+                 ng-repeat="host in main.hosts track by host.url | orderBy:'-createdAt'">
 
-</form>
-
-<div class="row">
-
-    <div class="col-xs-4">
-
-    </div>
-    <div class="col-xs-4">
-        <button class="form-control btn btn-info"
-                ng-click="main.send('{DOWN}')" style="margin: 10px 0;">{DOWN}</button>
-    </div>
-    <div class="col-xs-4">
-
-    </div>
-
-</div>
-
-
-<div class="row">
-
-    <div class="col-xs-3">
-
-    </div>
-    <div class="col-xs-6">
-        <button class="form-control btn btn-primary"
-                ng-click="main.send('{SPACE}')" style="margin: 10px 0;">{SPACE}</button>
-    </div>
-    <div class="col-xs-3">
-
-    </div>
-
-</div>
-
-<div ng-show="!main.hidden">
-    <div ng-repeat="host in main.hosts track by host.url | orderBy:'-createdAt'">
-        <div class="radio">
-            <label>
-                <input name="hostRadio" type="radio"
+                <input id="hostRadio-{{host.url}}" name="hostRadio-{{host.url}}" type="radio" class="radio-check"
                        value="{{host.url}}"
                        ng-model="main.model.selectedUrl"
                        ng-change="main.saveSelected(host);">
-                {{host.name}} - {{host.url}}
-            </label>
-            <button class="btn btn-default btn-xs"
-                    ng-click="main.removeHost(host)">x
-            </button>
+                <label for="hostRadio-{{host.url}}">{{host.name}} - {{host.url}}</label>
+                <button class="btn btn-warning btn-xs" ng-click="main.removeHost(host)">x</button>
+
+            </div>
+        </div>
+
+        <form name="keysForm" novalidate class="row block">
+            <div class="col-xs-4"
+                 ng-class="{ 'has-error': keysForm.keys.$invalid }">
+                <input name="name" type="text" class="form-control" ng-model="main.model.keys" required>
+            </div>
+            <input type="submit" class="btn btn-warning col-xs-2"
+                   ng-click="main.send(main.model.keys)" ng-disabled="keysForm.$invalid" value="Send">
+        </form>
+    </div>
+
+    <!-- Control block -->
+    <div class="row">
+        <div class="row">
+
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <button class="form-control btn btn-info"
+                        ng-click="main.send('{UP}')" style="margin: 10px 0;">{UP}
+                </button>
+            </div>
+            <div class="col-xs-4"></div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <button class="form-control btn btn-success"
+                        ng-click="main.send('{LEFT}')" style="margin: 10px 0;">{LEFT}
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button class="form-control btn btn-danger"
+                        ng-click="main.send('{ENTER}')" style="margin: 10px 0;">{ENTER}
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button class="form-control btn btn-success"
+                        ng-click="main.send('{RIGHT}')" style="margin: 10px 0;">{RIGHT}
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <button class="form-control btn btn-info"
+                        ng-click="main.send('{DOWN}')" style="margin: 10px 0;">{DOWN}
+                </button>
+            </div>
+            <div class="col-xs-4"></div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <button class="form-control btn btn-primary btn-ellipse btn-xl"
+                        ng-click="main.send('{SPACE}')" style="margin: 10px 0;">Play/Pause
+                </button>
+            </div>
+            <div class="col-xs-3"></div>
+
         </div>
     </div>
+
 </div>
