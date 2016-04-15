@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.screens');
 
-    _playerDirective.$inject = [];
-    module.directive('player', _playerDirective);
+    _directive.$inject = [];
+    module.directive('player', _directive);
 
-    function _playerDirective() {
+    function _directive() {
         return {
             templateUrl: 'core/screens/player/player.html'
         };

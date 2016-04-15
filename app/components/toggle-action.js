@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.components');
 
-    _toggleActionDirective.$inject = ['$timeout'];
-    module.directive('toggleAction', _toggleActionDirective);
+    _directive.$inject = ['$timeout'];
+    module.directive('toggleAction', _directive);
 
-    function _toggleActionDirective($timeout) {
+    function _directive($timeout) {
         return {
             scope: {
                 toggleAction: '='

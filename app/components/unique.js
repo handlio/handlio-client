@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.components');
 
-    _uniqueDirective.$inject = [];
-    module.directive('unique', _uniqueDirective);
+    _directive.$inject = [];
+    module.directive('unique', _directive);
 
-    function _uniqueDirective() {
+    function _directive() {
         return {
             require: 'ngModel',
             scope: { unique: '=' },
