@@ -8,7 +8,7 @@
 
     function _config($routeProvider) {
         $routeProvider.when('/main', {
-            templateUrl: 'main/main.html',
+            templateUrl: 'core/screens/main/main.html',
             controller: 'MainCtrl',
             controllerAs: 'main'
         });
