@@ -1,4 +1,3 @@
-
 /* hide input */
 input.radio-check:empty {
     margin-left: -999px;
@@ -32,7 +31,7 @@ input.radio-check:empty ~ label:before {
 
 /* toggle hover */
 input.radio-check:hover:not(:checked) ~ label:before {
-    content:'\2714';
+    content: '\2714';
     text-indent: .9em;
     color: #C2C2C2;
 }
@@ -43,7 +42,7 @@ input.radio-check:hover:not(:checked) ~ label {
 
 /* toggle on */
 input.radio-check:checked ~ label:before {
-    content:'\2714';
+    content: '\2714';
     text-indent: .9em;
     color: #9CE2AE;
     background-color: #4DCB6D;
@@ -57,34 +56,3 @@ input.radio-check:checked ~ label {
 input.radio-check:focus ~ label:before {
     box-shadow: 0 0 0 3px #999;
 }
-
-/*
- Buttons
-*/
-
-.btn-ellipse {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-}
-.btn-ellipse.btn-lg {
-    width: 50px;
-    height: 50px;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.33;
-    border-radius: 25px;
-}
-.btn-ellipse.btn-xl {
-    width: 100%;
-    height: 70px;
-    padding: 10px 16px;
-    font-size: 24px;
-    line-height: 1.33;
-    border-radius: 35px;
-}
-
