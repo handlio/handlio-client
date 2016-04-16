@@ -3,63 +3,63 @@
 
     var module = angular.module('handlio.client.hosts');
 
-    _hostController.$inject = ['$http', '$log', 'HostStore'];
-    module.controller('MainCtrl', _hostController);
+    _hostController.$inject = ['$log', 'HostStore'];
+    module.controller('HostsController', _hostController);
 
-    function _hostController($http, $log, HostStore) {
+    function _hostController($log, HostStore) {
         var defaults = { host: { url: '', name: '' } };
 
-        var ctrl = this;
-        var options = {
-            api: {
-                route: 'api/handle'
-            }
-        };
+        var vm = this;
+        // var options = {
+        //     api: {
+        //         route: 'api/handle'
+        //     }
+        // };
 
-        ctrl.hosts = HostStore.get('list') || [];
+        vm.hosts = HostStore.get('list') || [];
 
-        ctrl.new = angular.copy(defaults.host);
-        ctrl.model = { keys: '' };
+        vm.new = angular.copy(defaults.host);
+        vm.model = { keys: '' };
 
-        ctrl.model.selected = HostStore.get('selected') || ctrl.hosts[0] || null;
-        if (!!ctrl.model.selected) {
-            ctrl.model.selectedUrl = ctrl.model.selected.url;
+        vm.model.selected = HostStore.get('selected') || vm.hosts[0] || null;
+        if (!!vm.model.selected) {
+            vm.model.selectedUrl = vm.model.selected.url;
         }
 
-        ctrl.addHost = function (host) {
+        vm.addHost = function (host) {
             var newHost = {
                 url: host.url, name: host.name,
                 createdAt: _toTicks(new Date())
             };
-            ctrl.hosts.push(newHost);
-            HostStore.set('list', ctrl.hosts);
-            ctrl.new = angular.copy(defaults.host);
-            ctrl.model.selected = newHost;
-            ctrl.model.selectedUrl = newHost.url;
+            vm.hosts.push(newHost);
+            HostStore.set('list', vm.hosts);
+            vm.new = angular.copy(defaults.host);
+            vm.model.selected = newHost;
+            vm.model.selectedUrl = newHost.url;
             HostStore.set('selected', {
                 url: newHost.url, name: newHost.name,
                 createdAt: newHost.createdAt
             });
         };
 
-        ctrl.saveSelected = function (host) {
+        vm.saveSelected = function (host) {
             HostStore.set('selected', host);
         };
 
-        ctrl.removeHost = function (host, index) {
-            ctrl.hosts.splice(index, 1);
-            HostStore.set('list', ctrl.hosts);
+        vm.removeHost = function (host, index) {
+            vm.hosts.splice(index, 1);
+            HostStore.set('list', vm.hosts);
         };
 
-        ctrl.send = function (keys) {
-            var url = 'http://' + ctrl.model.selectedUrl + '/' + options.api.route;
-
-            $http.post(url, { keys: keys }, { cache: false }).then(function (res) {
-                $log.debug('Success: ', res);
-            }, function (err) {
-                $log.debug('Failed: ', err);
-            });
-        };
+        // vm.send = function (keys) {
+        //     var url = 'http://' + vm.model.selectedUrl + '/' + options.api.route;
+        //
+        //     $http.post(url, { keys: keys }, { cache: false }).then(function (res) {
+        //         $log.debug('Success: ', res);
+        //     }, function (err) {
+        //         $log.debug('Failed: ', err);
+        //     });
+        // };
 
         // todo: sorting does not work
         /*
