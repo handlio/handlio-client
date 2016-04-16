@@ -10,11 +10,6 @@
         var defaults = { host: { url: '', name: '' } };
 
         var vm = this;
-        // var options = {
-        //     api: {
-        //         route: 'api/handle'
-        //     }
-        // };
 
         vm.hosts = HostStore.get('list') || [];
 
@@ -54,6 +49,22 @@
             $log.info("Host was removed - ", host.url + ", " + host.name);
         };
 
+        // todo: sorting does not work
+        /*
+         * There are 621355968000000000 epoch ticks for javascript
+         * from Ist Jan 1900 to Ist Jan 1970.
+         * And here 10000 are the ticks per milliseconds.*/
+        function _toTicks(date) {
+            return (date.getTime() * 10000) + 621355968000000000;
+        }
+
+        // todo: move to manual command sender.
+        // var options = {
+        //     api: {
+        //         route: 'api/handle'
+        //     }
+        // };
+        
         // vm.send = function (keys) {
         //     var url = 'http://' + vm.model.selectedUrl + '/' + options.api.route;
         //
@@ -63,15 +74,6 @@
         //         $log.debug('Failed: ', err);
         //     });
         // };
-
-        // todo: sorting does not work
-        /*
-         * There are 621355968000000000 epoch ticks for javascript
-         * from Ist Jan 1900 to Ist Jan 1970.
-         * And here 10000 are the ticks per milliseconds.*/
-        function _toTicks(date) {
-            return (date.getTime() * 10000) + 621355968000000000;
-        }
     }
 
 })(angular);
