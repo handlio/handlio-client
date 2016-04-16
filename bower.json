@@ -5,10 +5,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-route": "~1.4.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
+    "angular": "~1.5.3",
+    "angular-route": "~1.5.3",
+    "angular-loader": "~1.5.3",
+    "angular-mocks": "~1.5.3",
     "a0-angular-storage": "^0.0.15",
     "bootstrap": "^3.3.6",
     "bootstrap-toggle": "~2.2.2"
