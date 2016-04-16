@@ -40,15 +40,18 @@
                 url: newHost.url, name: newHost.name,
                 createdAt: newHost.createdAt
             });
+            $log.info("Added new host - ", newHost.url + ", " + newHost.name);
         };
 
         vm.saveSelected = function (host) {
             HostStore.set('selected', host);
+            $log.info("Switched to another host - ", host.url + ", " + host.name);
         };
 
         vm.removeHost = function (host, index) {
             vm.hosts.splice(index, 1);
             HostStore.set('list', vm.hosts);
+            $log.info("Host was removed - ", host.url + ", " + host.name);
         };
 
         // vm.send = function (keys) {
