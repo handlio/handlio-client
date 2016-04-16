@@ -4,10 +4,10 @@
 
     var module = angular.module('handlio.client.configurator');
 
-    _controller.$inject = ['store'];
+    _controller.$inject = [];
     module.controller('ConfiguratorController', _controller);
 
-    function _controller(store) {
+    function _controller() {
         var vm = this;
 
     }
