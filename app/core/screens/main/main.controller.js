@@ -11,15 +11,15 @@
         var vm = this;
 
         var configState = store.get('config:state');
-        vm.showConfig = configState === null ? false : configState === ConfigState.shown;
+        vm.showConfigurator = configState === null ? false : configState === ConfigState.shown;
 
         vm.toggleConfig = _toggleConfig;
 
         // private functions
 
         function _toggleConfig(configVisibility) {
-            vm.showConfig = !configVisibility;
-            store.set('config:state', vm.showConfig ? ConfigState.shown : ConfigState.hidden);
+            vm.showConfigurator = !configVisibility;
+            store.set('config:state', vm.showConfigurator ? ConfigState.shown : ConfigState.hidden);
         }
     }
 
