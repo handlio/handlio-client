@@ -1,7 +1,7 @@
 {
   "name": "handlio-client",
-  "version": "0.0.0",
-  "homepage": "https://github.com/vandalkvist/handlio-client",
+  "version": "0.0.1",
+  "homepage": "https://github.com/handlio/handlio-client",
   "license": "MIT",
   "private": true,
   "dependencies": {
