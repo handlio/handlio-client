@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('handlio.client.configurator', [
-        'ngRoute',
-        'angular-storage'
+        'angular-storage',
+        'handlio.client.components'
     ]);
     
 })(angular);

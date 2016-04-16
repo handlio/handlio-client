@@ -4,11 +4,11 @@
                data-toggle="toggle"
                data-off="Configure" data-on="Hide"
                data-offstyle="warning" data-onstyle="default"
-               toggle-action="{fn: main.toggleConfig, value: !main.hidden}">
+               toggle-action="{fn: main.toggleConfig, value: !main.showConfig}">
     </div>
 
     <!-- Configuration block -->
-    <div configurator ng-show="!main.hidden"></div>
+    <div configurator ng-show="!main.showConfig"></div>
 
     <!-- Control block -->
     <div player></div>

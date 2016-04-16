@@ -16,8 +16,6 @@
             }
         };
 
-        ctrl.hidden = HostStore.get('hidden') === null ? false : HostStore.get('hidden');
-
         ctrl.hosts = HostStore.get('list') || [];
 
         ctrl.new = angular.copy(defaults.host);
@@ -51,11 +49,6 @@
         ctrl.removeHost = function (host, index) {
             ctrl.hosts.splice(index, 1);
             HostStore.set('list', ctrl.hosts);
-        };
-
-        ctrl.toggleConfig = function (visibility) {
-            ctrl.hidden = !visibility;
-            HostStore.set('hidden', ctrl.hidden);
         };
 
         ctrl.send = function (keys) {
