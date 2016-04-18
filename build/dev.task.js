@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var server = require('gulp-server-livereload');
 
 var paths = {
-    www: path.join(__dirname, 'app')
+    app: path.join(__dirname, '../app')
 };
 
 gulp.task('livereload', function () {
@@ -16,5 +16,6 @@ gulp.task('livereload', function () {
         port: 3111
     };
 
-    return gulp.src(paths.www).pipe(server(config));
+    console.log(`Turning on livereload for "${paths.app}"`);
+    return gulp.src(paths.app).pipe(server(config));
 });
