@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.screens');
+    var module = angular.module('handlio.client.screens.player');
 
     _directive.$inject = [];
     module.directive('player', _directive);
