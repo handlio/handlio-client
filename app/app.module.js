@@ -7,6 +7,7 @@
         'handlio.client.hosts',
         'handlio.client.components',
         'handlio.client.screens',
+        'handlio.client.commands',
         'angular-storage'
     ]);
 

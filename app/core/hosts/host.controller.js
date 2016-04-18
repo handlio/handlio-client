@@ -65,23 +65,6 @@
         function _toTicks(date) {
             return (date.getTime() * 10000) + 621355968000000000;
         }
-
-        // todo: move to manual command sender.
-        // var options = {
-        //     api: {
-        //         route: 'api/handle'
-        //     }
-        // };
-        
-        // vm.send = function (keys) {
-        //     var url = 'http://' + vm.model.selectedUrl + '/' + options.api.route;
-        //
-        //     $http.post(url, { keys: keys }, { cache: false }).then(function (res) {
-        //         $log.debug('Success: ', res);
-        //     }, function (err) {
-        //         $log.debug('Failed: ', err);
-        //     });
-        // };
     }
 
 })(angular);
