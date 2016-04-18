@@ -34,14 +34,16 @@
             };
             vm.hosts.push(newHost);
             HostStore.set('list', vm.hosts);
+            $log.info("Added new host - ", newHost.url + ", " + newHost.name);
+            
             vm.new = angular.copy(defaults.host);
+            
             vm.model.selected = newHost;
             vm.model.selectedUrl = newHost.url;
             HostStore.set('selected', {
                 url: newHost.url, name: newHost.name,
                 createdAt: newHost.createdAt
             });
-            $log.info("Added new host - ", newHost.url + ", " + newHost.name);
         }
 
         function _saveSelected(host) {
