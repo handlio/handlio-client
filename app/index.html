@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap-toggle/css/bootstrap-toggle.css">
     <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="main/main.css">
+    <link rel="stylesheet" href="core/configurator/configurator.css">
+    <link rel="stylesheet" href="core/screens/player/player.css">
 </head>
 <body>
 
@@ -32,8 +33,36 @@
 <script src="bower_components/bootstrap-toggle/js/bootstrap-toggle.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
-<script src="app.js"></script>
-<script src="main/main.js"></script>
+
+<script src="app.module.js"></script>
+<script src="app.config.js"></script>
+
+<script src="core/configurator/configurator.module.js"></script>
+<script src="core/configurator/configurator.controller.js"></script>
+<script src="core/configurator/configurator.js"></script>
+
+<script src="core/hosts/hosts.module.js"></script>
+<script src="core/hosts/host.storage.js"></script>
+<script src="core/hosts/host.controller.js"></script>
+<script src="core/hosts/hosts.js"></script>
+
+<script src="core/commands/commands.module.js"></script>
+<script src="core/commands/commands.controller.js"></script>
+<script src="core/commands/command.sender.js"></script>
+
+<script src="core/screens/screens.module.js"></script>
+
+<script src="core/screens/main/main.module.js"></script>
+<script src="core/screens/main/main.config.js"></script>
+<script src="core/screens/main/main.constants.js"></script>
+<script src="core/screens/main/main.controller.js"></script>
+
+<script src="core/screens/player/player.module.js"></script>
+<script src="core/screens/player/player.js"></script>
+
+<script src="components/components.module.js"></script>
+<script src="components/toggle-action.js"></script>
+<script src="components/unique.js"></script>
 
 <script type="application/javascript">
     (function() {
