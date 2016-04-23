@@ -3,20 +3,27 @@
 
     var module = angular.module('handlio.client.screens.main');
 
-    _config.$inject = ['$routeProvider', 'CustomPluginsProvider'];
+    _config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'CustomPluginsProvider'];
     module.config(_config);
 
-    function _config($routeProvider, CustomPluginsProvider) {
-        $routeProvider.when('/main', {
+    function _config($stateProvider, $locationProvider, $urlRouterProvider, CustomPluginsProvider) {
+        $stateProvider.state('index', {
+            url: '',
             templateUrl: 'core/screens/main/main.html',
             controller: 'MainController',
             controllerAs: 'main'
         });
 
-        $routeProvider.when('/main/:plugin', {
-            template: '<div dynamic-view directive="$routeParams.plugin"></div>'
+        $stateProvider.state('plugin', {
+            parent: 'index',
+            url: '/:plugin',
+            controller: function ($scope, $state) {
+                $scope.$state = $state;
+            },
+            template: '<div dynamic-view directive="$state.params.plugin"></div>'
         });
 
+        // todo: move somewhere
         CustomPluginsProvider.add({
             name: 'player',
             directive: 'player',
@@ -24,6 +31,11 @@
                 text: 'player'
             }
         });
+
+        $urlRouterProvider.otherwise('/');
+
+        // todo: ?
+        // $locationProvider.html5Mode(true);
     }
 
 })(angular);
