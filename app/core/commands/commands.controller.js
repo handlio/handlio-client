@@ -3,11 +3,13 @@
 
     var module = angular.module('handlio.client.commands');
 
-    _controller.$inject = ['$http'];
+    _controller.$inject = ['$rootScope', '$http', '$log', 'HostStore'];
     module.controller('CommandController', _controller);
 
-    function _controller($http) {
+    function _controller($rootScope, $http, $log, HostStore) {
         var vm = this;
+
+        $rootScope.commandController = vm;
 
         var options = {
             api: {
@@ -16,7 +18,11 @@
         };
 
         vm.send = function (keys) {
-            var url = 'http://' + vm.model.selectedUrl + '/' + options.api.route;
+
+            var selectedHost = HostStore.get('selected');
+            var selectedUrl = selectedHost.url;
+
+            var url = 'http://' + selectedUrl + '/' + options.api.route;
 
             $http.post(url, { keys: keys }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);

@@ -10,9 +10,6 @@
     <!-- Configuration block -->
     <div configurator ng-show="!main.showConfigurator"></div>
 
-    <!-- Control block -->
-    <!--<div player></div>-->
-
     <div ng-repeat="plugin in main.plugins">
         <a class="btn" ui-sref="plugin({plugin: plugin.name})">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
     </div>
