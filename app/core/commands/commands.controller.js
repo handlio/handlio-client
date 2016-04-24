@@ -11,11 +11,7 @@
 
         $rootScope.commandController = vm;
 
-        var options = {
-            api: {
-                route: 'api/handle'
-            }
-        };
+        var options = { api: { route: 'api/handle' } };
 
         vm.send = function (keys) {
 

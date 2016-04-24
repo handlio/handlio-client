@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.screens.main');
 
-    _config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'CustomPluginsProvider'];
+    _config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'PluginTrackerProvider'];
     module.config(_config);
 
-    function _config($stateProvider, $locationProvider, $urlRouterProvider, CustomPluginsProvider) {
+    function _config($stateProvider, $locationProvider, $urlRouterProvider, PluginTrackerProvider) {
         $stateProvider.state('index', {
             url: '',
             templateUrl: 'core/screens/main/main.html',
@@ -24,7 +24,7 @@
         });
 
         // todo: move somewhere
-        CustomPluginsProvider.add({
+        PluginTrackerProvider.add({
             name: 'player',
             directive: 'player',
             button: {
