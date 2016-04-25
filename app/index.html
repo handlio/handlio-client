@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap-toggle/css/bootstrap-toggle.css">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="modules/configurator/configurator.css">
-    <link rel="stylesheet" href="modules/screens/player/player.css">
+    <link rel="stylesheet" href="plugins/player/player.css">
 </head>
 <body>
 
@@ -40,6 +40,7 @@
 <script src="app.config.js"></script>
 <script src="core/core.module.js"></script>
 <script src="core/command.service.js"></script>
+<script src="core/plugin-tracker.js"></script>
 
 <script src="modules/configurator/configurator.module.js"></script>
 <script src="modules/configurator/configurator.controller.js"></script>
@@ -53,21 +54,20 @@
 <script src="modules/command-sender/commands.module.js"></script>
 <script src="modules/command-sender/command-sender.js"></script>
 
-<script src="modules/screens/screens.module.js"></script>
-
-<script src="modules/screens/main/main.module.js"></script>
-<script src="modules/screens/main/main.config.js"></script>
-<script src="modules/screens/main/main.constants.js"></script>
-<script src="modules/screens/main/main.controller.js"></script>
-<script src="modules/screens/main/plugin-tracker.js"></script>
-<script src="modules/screens/main/dynamic-view.js"></script>
-
-<script src="modules/screens/player/player.module.js"></script>
-<script src="modules/screens/player/player.js"></script>
+<script src="modules/screen/screen.module.js"></script>
+<script src="modules/screen/screen.config.js"></script>
+<script src="modules/screen/screen.constants.js"></script>
+<script src="modules/screen/screen.controller.js"></script>
+<script src="modules/screen/dynamic-view.js"></script>
 
 <script src="components/components.module.js"></script>
 <script src="components/toggle-action.js"></script>
 <script src="components/unique.js"></script>
+
+<script src="plugins/plugins.module.js"></script>
+
+<script src="plugins/player/player.module.js"></script>
+<script src="plugins/player/player.js"></script>
 
 <script type="application/javascript">
     (function() {

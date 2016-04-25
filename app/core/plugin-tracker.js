@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.screens.main');
+    var module = angular.module('handlio.client.core');
 
     _provider.$inject = [];
     module.provider('PluginTracker', _provider);

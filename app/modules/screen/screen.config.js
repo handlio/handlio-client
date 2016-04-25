@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.screens.main');
+    var module = angular.module('handlio.client.screen');
 
     _config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'PluginTrackerProvider'];
     module.config(_config);
@@ -9,7 +9,7 @@
     function _config($stateProvider, $locationProvider, $urlRouterProvider, PluginTrackerProvider) {
         $stateProvider.state('index', {
             url: '',
-            templateUrl: 'modules/screens/main/main.html',
+            templateUrl: 'modules/screen/screen.html',
             controller: 'MainController',
             controllerAs: 'main'
         });

@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.screens.main');
+    var module = angular.module('handlio.client.screen');
 
     _directive.$inject = ['$compile'];
     module.directive('dynamicView', _directive);
