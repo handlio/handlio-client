@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.commands');
 
-    _service.$inject = ['$rootScope', '$http', '$log', 'HostStore'];
+    _service.$inject = ['$http', '$log', 'HostStore'];
     module.service('CommandService', _service);
 
-    function _service($rootScope, $http, $log, HostStore) {
+    function _service($http, $log, HostStore) {
         var options = { api: { route: 'api/handle' } };
 
         this.send = _send;

@@ -8,7 +8,7 @@
 
     function _directive() {
         return {
-            templateUrl: 'core/screens/player/player.html'
+            templateUrl: 'modules/screens/player/player.html'
         };
     }
     

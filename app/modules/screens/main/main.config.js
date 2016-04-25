@@ -9,7 +9,7 @@
     function _config($stateProvider, $locationProvider, $urlRouterProvider, PluginTrackerProvider) {
         $stateProvider.state('index', {
             url: '',
-            templateUrl: 'core/screens/main/main.html',
+            templateUrl: 'modules/screens/main/main.html',
             controller: 'MainController',
             controllerAs: 'main'
         });
