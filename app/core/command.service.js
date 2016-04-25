@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.commands');
+    var module = angular.module('handlio.client.core');
 
     _service.$inject = ['$http', '$log', 'HostStore'];
     module.service('CommandService', _service);
