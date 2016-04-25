@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.configurator');
+    var module = angular.module('handlio.client.hosts');
 
     _hostStoreFactory.$inject = ['store'];
     module.factory('HostStore', _hostStoreFactory);
