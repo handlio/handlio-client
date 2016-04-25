@@ -1,17 +1,12 @@
 (function (angular) {
     'use strict';
 
-    var module = angular.module('handlio.client.screen', [
-        'ngRoute',
+    angular.module('handlio.client.screen', [
         'ui.router',
-        'angular-storage'
+        'angular-storage',
+        'handlio.client.core',
+        'handlio.client.configurator',
+        'handlio.client.command-sender'
     ]);
-
-    _run.$inject = ['$rootScope', 'CommandService'];
-    module.run(_run);
-
-    function _run($rootScope, CommandService) {
-        $rootScope.commands = CommandService;
-    }
 
 })(angular);

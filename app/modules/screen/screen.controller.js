@@ -12,7 +12,7 @@
         var configState = store.get('config:state');
         vm.showConfigurator = configState === null ? false : configState === ConfigState.shown;
         
-        vm.plugins = PluginTracker();
+        vm.plugins = PluginTracker.getPlugins();
         
         vm.toggleConfig = _toggleConfig;
 

@@ -7,10 +7,7 @@
     module.constant('ConfigState', _constant());
 
     function _constant() {
-        return {
-            shown: 'shown',
-            hidden: 'hidden'
-        };
+        return { shown: 'shown', hidden: 'hidden' };
     }
 
 })(angular);

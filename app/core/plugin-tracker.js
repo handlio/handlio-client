@@ -26,9 +26,11 @@
         }
 
         function _get() {
-            return function () {
-                return plugins;
-            }
+            return {
+                getPlugins: function () {
+                    return plugins;
+                }
+            };
         }
     }
 
