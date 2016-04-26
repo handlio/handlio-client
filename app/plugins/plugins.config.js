@@ -2,11 +2,7 @@
     'use strict';
 
     // todo: load modules dynamically
-    var module = angular.module('handlio.client.plugins', [
-        'handlio.client.core',
-        'handlio.client.screen',
-        'handlio.client.plugins.player'
-    ]);
+    var module = angular.module('handlio.client.plugins');
 
     _config.$inject = ['PluginTrackerProvider'];
     module.config(_config);
