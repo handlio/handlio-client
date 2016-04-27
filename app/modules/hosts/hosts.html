@@ -2,13 +2,13 @@
     <div class="col-xs-4"
          ng-class="{ 'has-error': userForm.name.$dirty && userForm.name.$invalid }">
 
-        <input name="name" type="text" class="form-control"
+        <input name="name" type="text" class="form-control" title="Host name"
                ng-model="hosts.new.name" unique="{list: hosts.hosts, key: 'name'}" required>
 
     </div>
     <div class="col-xs-4"
          ng-class="{ 'has-error': userForm.url.$dirty && userForm.url.$invalid }">
-        <input name="url" type="text" class="form-control"
+        <input name="url" type="text" class="form-control" title="Host url"
                ng-model="hosts.new.url" unique="{list: hosts.hosts, key: 'url'}" required>
     </div>
     <div class="col-xs-2">
@@ -17,8 +17,8 @@
     </div>
 </form>
 
-<div class="row block" style="margin-left: 0px;">
-    <div class="row" style="margin-left: 0px;"
+<div class="row block" style="margin-left: 0;">
+    <div class="row" style="margin-left: 0;"
          ng-repeat="host in hosts.hosts track by host.url | orderBy:'-createdAt'">
 
         <input id="hostRadio-{{host.url}}" name="hostRadio-{{host.url}}" type="radio" class="radio-check"
