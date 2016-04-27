@@ -3,24 +3,36 @@
 
     var module = angular.module('handlio.client.screen');
 
-    _controller.$inject = ['store', 'ConfigState', 'PluginTracker'];
+    _controller.$inject = ['store', 'VisibilityState', 'PluginTracker'];
     module.controller('MainController', _controller);
 
-    function _controller(store, ConfigState, PluginTracker) {
+    function _controller(store, VisibilityState, PluginTracker) {
         var vm = this;
 
-        var configState = store.get('config:state');
-        vm.showConfigurator = configState === null ? false : configState === ConfigState.shown;
-        
+        vm.panels = {
+            'configurator': { name: 'configurator', storeKey: 'config:state', visible: '' },
+            'command-sender': { name: 'command-sender', storeKey: 'command-sender:state', visible: '' }
+        };
+
+        for (var panelName in vm.panels) {
+            if (vm.panels.hasOwnProperty(panelName)) {
+                var panelDefinition = vm.panels[panelName];
+                var state = store.get(panelDefinition.storeKey);
+                panelDefinition.visible = state === null ? false : state === VisibilityState.shown;
+            }
+        }
+
         vm.plugins = PluginTracker.getPlugins();
-        
-        vm.toggleConfig = _toggleConfig;
+
+        vm.toggleConfig = _toggleVisibility.bind(null, 'configurator');
+        vm.toggleCommandSender = _toggleVisibility.bind(null, 'command-sender');
 
         // private functions
 
-        function _toggleConfig(configVisibility) {
-            vm.showConfigurator = !configVisibility;
-            store.set('config:state', vm.showConfigurator ? ConfigState.shown : ConfigState.hidden);
+        function _toggleVisibility(panelName, visible) {
+            var panelDefinition = vm.panels[panelName];
+            panelDefinition.visible = !visible;
+            store.set('config:state', panelDefinition.visible ? VisibilityState.shown : VisibilityState.hidden);
         }
     }
 

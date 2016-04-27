@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row block">
         <input type="checkbox"
-               data-toggle="toggle"
+               data-toggle="toggle" title="Show/Hide configurator"
                data-off="Configure" data-on="Hide"
                data-offstyle="warning" data-onstyle="default"
-               toggle-action="{fn: main.toggleConfig, value: !main.showConfigurator}">
+               toggle-action="{ fn: main.toggleConfig, value: !main.panels.configurator.visible }">
     </div>
 
     <!-- Configuration block -->
-    <div configurator ng-show="!main.showConfigurator"></div>
+    <div configurator ng-show="!main.panels.configurator.visible"></div>
 
     <div ng-repeat="plugin in main.plugins">
         <a class="btn" ui-sref="plugin({plugin: plugin.name})">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
@@ -16,7 +16,7 @@
 
     <div ui-view></div>
 
-    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="!main.showConfigurator">
+    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="!main.panels['command-sender'].visible">
         <div command-sender></div>
     </footer>
 </div>
