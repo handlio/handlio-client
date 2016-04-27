@@ -32,7 +32,7 @@
         function _toggleVisibility(panelName, visible) {
             var panelDefinition = vm.panels[panelName];
             panelDefinition.visible = !visible;
-            store.set('config:state', panelDefinition.visible ? VisibilityState.shown : VisibilityState.hidden);
+            store.set(panelDefinition.storeKey, panelDefinition.visible ? VisibilityState.shown : VisibilityState.hidden);
         }
     }
 
