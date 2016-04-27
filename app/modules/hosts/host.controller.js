@@ -13,7 +13,7 @@
 
         vm.list = HostStore.get('list') || [];
 
-        vm.new = angular.copy(defaults.host);
+        vm.new = defaults.host();
         vm.model = {
             keys: '',
             selected: HostStore.get('selected') || vm.list[0] || null
