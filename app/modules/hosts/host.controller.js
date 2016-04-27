@@ -7,7 +7,7 @@
     module.controller('HostsController', _hostController);
 
     function _hostController($log, HostStore) {
-        var defaults = { host: { url: '', name: '' } };
+        var defaults = { host: _defaultHost };
 
         var vm = this;
 
@@ -28,22 +28,17 @@
         // private functions
 
         function _addHost(host) {
-            var newHost = {
-                url: host.url, name: host.name,
-                createdAt: _toTicks(new Date())
-            };
+            var newHost = { url: host.url, name: host.name };
             vm.hosts.push(newHost);
             HostStore.set('list', vm.hosts);
             $log.info("Added new host - ", newHost.url + ", " + newHost.name);
-            
-            vm.new = angular.copy(defaults.host);
+
+            vm.new = defaults.host();
             
             vm.model.selected = newHost;
             vm.model.selectedUrl = newHost.url;
-            HostStore.set('selected', {
-                url: newHost.url, name: newHost.name,
-                createdAt: newHost.createdAt
-            });
+
+            _saveSelected(newHost);
         }
 
         function _saveSelected(host) {
@@ -57,13 +52,8 @@
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }
 
-        // todo: sorting does not work
-        /*
-         * There are 621355968000000000 epoch ticks for javascript
-         * from Ist Jan 1900 to Ist Jan 1970.
-         * And here 10000 are the ticks per milliseconds.*/
-        function _toTicks(date) {
-            return (date.getTime() * 10000) + 621355968000000000;
+        function _defaultHost() {
+            return { url: '', name: '' };
         }
     }
 
