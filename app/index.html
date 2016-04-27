@@ -8,6 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="handlio.client" class="no-js"> <!--<![endif]-->
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Handlio</title>
@@ -16,8 +17,8 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap-toggle/css/bootstrap-toggle.css">
     <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="core/configurator/configurator.css">
-    <link rel="stylesheet" href="core/screens/player/player.css">
+    <link rel="stylesheet" href="modules/configurator/configurator.css">
+    <link rel="stylesheet" href="plugins/player/player.css">
 </head>
 <body>
 
@@ -26,43 +27,47 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ng-view style="margin: 5px;"></div>
+<div ui-view style="margin: 5px;"></div>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap-toggle/js/bootstrap-toggle.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
 
 <script src="app.module.js"></script>
-<script src="app.config.js"></script>
 
-<script src="core/configurator/configurator.module.js"></script>
-<script src="core/configurator/configurator.controller.js"></script>
-<script src="core/configurator/configurator.js"></script>
+<script src="core/core.module.js"></script>
+<script src="core/command.service.js"></script>
+<script src="core/plugin-tracker.js"></script>
 
-<script src="core/hosts/hosts.module.js"></script>
-<script src="core/hosts/host.storage.js"></script>
-<script src="core/hosts/host.controller.js"></script>
-<script src="core/hosts/hosts.js"></script>
+<script src="modules/configurator/configurator.module.js"></script>
+<script src="modules/configurator/configurator.controller.js"></script>
+<script src="modules/configurator/configurator.js"></script>
 
-<script src="core/commands/commands.module.js"></script>
-<script src="core/commands/commands.controller.js"></script>
-<script src="core/commands/command.sender.js"></script>
+<script src="modules/hosts/hosts.module.js"></script>
+<script src="modules/hosts/host.store.js"></script>
+<script src="modules/hosts/host.controller.js"></script>
+<script src="modules/hosts/hosts.js"></script>
 
-<script src="core/screens/screens.module.js"></script>
+<script src="modules/command-sender/commands.module.js"></script>
+<script src="modules/command-sender/command-sender.js"></script>
 
-<script src="core/screens/main/main.module.js"></script>
-<script src="core/screens/main/main.config.js"></script>
-<script src="core/screens/main/main.constants.js"></script>
-<script src="core/screens/main/main.controller.js"></script>
-
-<script src="core/screens/player/player.module.js"></script>
-<script src="core/screens/player/player.js"></script>
+<script src="modules/screen/screen.module.js"></script>
+<script src="modules/screen/screen.config.js"></script>
+<script src="modules/screen/screen.constants.js"></script>
+<script src="modules/screen/screen.controller.js"></script>
+<script src="modules/screen/dynamic-view.js"></script>
 
 <script src="components/components.module.js"></script>
 <script src="components/toggle-action.js"></script>
 <script src="components/unique.js"></script>
+
+<script src="plugins/plugins.module.js"></script>
+
+<script src="plugins/player/player.module.js"></script>
+<script src="plugins/player/player.js"></script>
 
 <script type="application/javascript">
     (function() {

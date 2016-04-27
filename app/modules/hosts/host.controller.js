@@ -7,16 +7,16 @@
     module.controller('HostsController', _hostController);
 
     function _hostController($log, HostStore) {
-        var defaults = { host: { url: '', name: '' } };
+        var defaults = { host: _defaultHost };
 
         var vm = this;
 
-        vm.hosts = HostStore.get('list') || [];
+        vm.list = HostStore.get('list') || [];
 
-        vm.new = angular.copy(defaults.host);
+        vm.new = defaults.host();
         vm.model = {
             keys: '',
-            selected: HostStore.get('selected') || vm.hosts[0] || null
+            selected: HostStore.get('selected') || vm.list[0] || null
         };
 
         (!!vm.model.selected) && (vm.model.selectedUrl = vm.model.selected.url);
@@ -28,22 +28,17 @@
         // private functions
 
         function _addHost(host) {
-            var newHost = {
-                url: host.url, name: host.name,
-                createdAt: _toTicks(new Date())
-            };
-            vm.hosts.push(newHost);
-            HostStore.set('list', vm.hosts);
+            var newHost = { url: host.url, name: host.name };
+            vm.list.push(newHost);
+            HostStore.set('list', vm.list);
             $log.info("Added new host - ", newHost.url + ", " + newHost.name);
-            
-            vm.new = angular.copy(defaults.host);
+
+            vm.new = defaults.host();
             
             vm.model.selected = newHost;
             vm.model.selectedUrl = newHost.url;
-            HostStore.set('selected', {
-                url: newHost.url, name: newHost.name,
-                createdAt: newHost.createdAt
-            });
+
+            _saveSelected(newHost);
         }
 
         function _saveSelected(host) {
@@ -52,18 +47,13 @@
         }
 
         function _removeHost(host, index) {
-            vm.hosts.splice(index, 1);
-            HostStore.set('list', vm.hosts);
+            vm.list.splice(index, 1);
+            HostStore.set('list', vm.list);
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }
 
-        // todo: sorting does not work
-        /*
-         * There are 621355968000000000 epoch ticks for javascript
-         * from Ist Jan 1900 to Ist Jan 1970.
-         * And here 10000 are the ticks per milliseconds.*/
-        function _toTicks(date) {
-            return (date.getTime() * 10000) + 621355968000000000;
+        function _defaultHost() {
+            return { url: '', name: '' };
         }
     }
 

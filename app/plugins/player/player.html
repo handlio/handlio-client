@@ -4,7 +4,7 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
             <button class="form-control btn btn-info"
-                    ng-click="main.send('{UP}')" style="margin: 10px 0;">{UP}
+                    ng-click="$root.commands.send('{UP}')" style="margin: 10px 0;">{UP}
             </button>
         </div>
         <div class="col-xs-4"></div>
@@ -14,17 +14,17 @@
     <div class="row">
         <div class="col-xs-4">
             <button class="form-control btn btn-success"
-                    ng-click="main.send('{LEFT}')" style="margin: 10px 0;">{LEFT}
+                    ng-click="$root.commands.send('{LEFT}')" style="margin: 10px 0;">{LEFT}
             </button>
         </div>
         <div class="col-xs-4">
             <button class="form-control btn btn-danger"
-                    ng-click="main.send('{ENTER}')" style="margin: 10px 0;">{ENTER}
+                    ng-click="$root.commands.send('{ENTER}')" style="margin: 10px 0;">{ENTER}
             </button>
         </div>
         <div class="col-xs-4">
             <button class="form-control btn btn-success"
-                    ng-click="main.send('{RIGHT}')" style="margin: 10px 0;">{RIGHT}
+                    ng-click="$root.commands.send('{RIGHT}')" style="margin: 10px 0;">{RIGHT}
             </button>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
             <button class="form-control btn btn-info"
-                    ng-click="main.send('{DOWN}')" style="margin: 10px 0;">{DOWN}
+                    ng-click="$root.commands.send('{DOWN}')" style="margin: 10px 0;">{DOWN}
             </button>
         </div>
         <div class="col-xs-4"></div>
@@ -46,7 +46,7 @@
         <div class="col-xs-3"></div>
         <div class="col-xs-6">
             <button class="form-control btn btn-primary btn-ellipse btn-xl"
-                    ng-click="main.send('{SPACE}')" style="margin: 10px 0;">Play/Pause
+                    ng-click="$root.commands.send('{SPACE}')" style="margin: 10px 0;">Play/Pause
             </button>
         </div>
         <div class="col-xs-3"></div>

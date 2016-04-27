@@ -8,7 +8,7 @@
 
     function _directive() {
         return {
-            templateUrl: 'core/configurator/configurator.html',
+            templateUrl: 'modules/configurator/configurator.html',
             controller: 'ConfiguratorController as configurator'
         };
     }

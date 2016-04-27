@@ -8,8 +8,8 @@
 
     function _directive() {
         return {
-            templateUrl: 'core/hosts/hosts.html',
-            controller: 'HostsController as hostsController'
+            templateUrl: 'modules/hosts/hosts.html',
+            controller: 'HostsController as hosts'
         };
     }
 

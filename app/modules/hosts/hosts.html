@@ -1,0 +1,32 @@
+<form name="userForm" novalidate class="row">
+    <div class="col-xs-4"
+         ng-class="{ 'has-error': userForm.name.$dirty && userForm.name.$invalid }">
+
+        <input name="name" type="text" class="form-control" title="Host name"
+               ng-model="hosts.new.name" unique="{list: hosts.list, key: 'name'}" required>
+
+    </div>
+    <div class="col-xs-4"
+         ng-class="{ 'has-error': userForm.url.$dirty && userForm.url.$invalid }">
+        <input name="url" type="text" class="form-control" title="Host url"
+               ng-model="hosts.new.url" unique="{list: hosts.list, key: 'url'}" required>
+    </div>
+    <div class="col-xs-2">
+        <input type="submit" class="btn btn-warning"
+               ng-click="hosts.addHost(hosts.new)" ng-disabled="userForm.$invalid" value="Add">
+    </div>
+</form>
+
+<div class="row block" style="margin-left: 0;">
+    <div class="row" style="margin-left: 0;"
+         ng-repeat="host in hosts.list track by host.url | orderBy:'-createdAt'">
+
+        <input id="hostRadio-{{host.url}}" name="hostRadio-{{host.url}}" type="radio" class="radio-check"
+               value="{{host.url}}"
+               ng-model="hosts.model.selectedUrl"
+               ng-change="hosts.saveSelected(host);">
+        <label for="hostRadio-{{host.url}}">{{host.name}} - {{host.url}}</label>
+        <button class="btn btn-warning btn-xs" ng-click="hosts.removeHost(host)">x</button>
+
+    </div>
+</div>
