@@ -9,7 +9,7 @@
     function _directive() {
         return {
             templateUrl: 'modules/hosts/hosts.html',
-            controller: 'HostsController as hostsController'
+            controller: 'HostsController as hosts'
         };
     }
 

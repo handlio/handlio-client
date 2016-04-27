@@ -7,7 +7,11 @@
     module.factory('HostStore', _hostStoreFactory);
 
     function _hostStoreFactory(store) {
-        return store.getNamespacedStore('hosts');
+        return store.getNamespacedStore(
+            'hosts' /*namespace*/,
+            'localStorage' /*storage type*/,
+            ':' /*delimiter*/,
+            false /*useCache*/);
     }
 
 })(angular);
