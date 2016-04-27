@@ -11,7 +11,7 @@ gulp.task('livereload', function () {
     var config = {
         livereload: true,
         directoryListing: false,
-        open: true,
+        open: false,
         host: '127.0.0.1',
         port: 3111,
         fallback: 'index.html'
