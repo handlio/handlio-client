@@ -4,7 +4,7 @@
     var module = angular.module('handlio.client.screen');
 
     _controller.$inject = ['store', 'VisibilityState', 'PluginTracker'];
-    module.controller('MainController', _controller);
+    module.controller('ScreenController', _controller);
 
     function _controller(store, VisibilityState, PluginTracker) {
         var vm = this;
