@@ -11,9 +11,10 @@ gulp.task('livereload', function () {
     var config = {
         livereload: true,
         directoryListing: false,
-        open: false,
+        open: true,
         host: '127.0.0.1',
-        port: 3111
+        port: 3111,
+        fallback: 'index.html'
     };
 
     console.log(`Turning on livereload for "${paths.app}"`);
