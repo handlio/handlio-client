@@ -10,8 +10,8 @@
         $stateProvider.state('index', {
             url: '',
             templateUrl: 'modules/screen/screen.html',
-            controller: 'MainController',
-            controllerAs: 'main'
+            controller: 'ScreenController',
+            controllerAs: 'screen'
         });
 
         $stateProvider.state('plugin', {
@@ -25,8 +25,7 @@
 
         $urlRouterProvider.otherwise('/');
 
-        // todo: ?
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
     }
 
 })(angular);
