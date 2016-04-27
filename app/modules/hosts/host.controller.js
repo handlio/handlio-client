@@ -11,12 +11,12 @@
 
         var vm = this;
 
-        vm.hosts = HostStore.get('list') || [];
+        vm.list = HostStore.get('list') || [];
 
         vm.new = angular.copy(defaults.host);
         vm.model = {
             keys: '',
-            selected: HostStore.get('selected') || vm.hosts[0] || null
+            selected: HostStore.get('selected') || vm.list[0] || null
         };
 
         (!!vm.model.selected) && (vm.model.selectedUrl = vm.model.selected.url);
@@ -29,8 +29,8 @@
 
         function _addHost(host) {
             var newHost = { url: host.url, name: host.name };
-            vm.hosts.push(newHost);
-            HostStore.set('list', vm.hosts);
+            vm.list.push(newHost);
+            HostStore.set('list', vm.list);
             $log.info("Added new host - ", newHost.url + ", " + newHost.name);
 
             vm.new = defaults.host();
@@ -47,8 +47,8 @@
         }
 
         function _removeHost(host, index) {
-            vm.hosts.splice(index, 1);
-            HostStore.set('list', vm.hosts);
+            vm.list.splice(index, 1);
+            HostStore.set('list', vm.list);
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }
 
