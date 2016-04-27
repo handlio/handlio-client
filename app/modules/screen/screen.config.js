@@ -25,8 +25,7 @@
 
         $urlRouterProvider.otherwise('/');
 
-        // todo: ?
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
     }
 
 })(angular);
