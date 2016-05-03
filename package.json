@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-server-livereload": "^1.7.4"
+    "gulp-connect": "^4.0.0"
   },
   "scripts": {
     "predev": "npm install && bower install && npm i gulp -g",
