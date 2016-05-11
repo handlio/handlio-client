@@ -24,15 +24,13 @@ gulp.task('connect', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch([config.html, config.js], ['html', 'js']);
+    return gulp.watch([config.html, config.js], ['html', 'js']);
 });
 
 gulp.task('html', function () {
-    gulp.src(config.html)
-        .pipe(connect.reload());
+    return gulp.src(config.html).pipe(connect.reload());
 });
 
 gulp.task('js', function () {
-    gulp.src(config.js)
-        .pipe(connect.reload());
+    return gulp.src(config.js).pipe(connect.reload());
 });
