@@ -1,11 +1,17 @@
 <div class="row">
     <form name="keysForm" novalidate class="row block">
         <div class="col-xs-4"
-             ng-class="{ 'has-error': keysForm.keys.$invalid }">
-            <input name="name" type="text" class="form-control" title="Keys"
-                   ng-model="main.model.keys" required>
+             ng-class="{ 'has-error': keysForm.keys.$dirty && keysForm.keys.$invalid }">
+            <input name="keys" type="text" class="form-control" title="Keys"
+                   ng-model="hosts.model.keys" required placeholder="Command text">
+        </div>
+        <div class="col-xs-4"
+             ng-class="{ 'has-error': keysForm.windowName.$dirty && keysForm.windowName.$invalid }">
+            <input name="windowName" type="text" class="form-control" title="Window name"
+                   ng-model="hosts.model.window" required placeholder="Window name">
         </div>
         <input type="submit" class="btn btn-warning col-xs-2"
-               ng-click="$root.commands.send(main.model.keys)" ng-disabled="keysForm.$invalid" value="Send">
+               ng-click="$root.commands.send(hosts.model.keys, hosts.model.window)"
+               ng-disabled="keysForm.$invalid" value="Send">
     </form>
 </div>

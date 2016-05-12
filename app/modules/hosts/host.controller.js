@@ -16,6 +16,7 @@
         vm.new = defaults.host();
         vm.model = {
             keys: '',
+            window: '[ACTIVE]', // todo: sync in local storage
             selected: HostStore.get('selected') || vm.list[0] || null
         };
 
