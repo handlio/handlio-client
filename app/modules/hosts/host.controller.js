@@ -46,20 +46,18 @@
         function _saveSelectedHostToStore(host) {
             if (host) {
                 HostStore.set('selected', host);
+                $log.info("Switched to another host - ", host.url + ", " + host.name);
             }
-            else  {
+            else {
                 HostStore.remove('selected');
             }
-            host && $log.info("Switched to another host - ", host.url + ", " + host.name);
         }
 
         function _removeHost(host, index) {
             vm.list.splice(index, 1);
             HostStore.set('list', vm.list);
 
-            if (vm.model.selected === host) {
-                _setSelected(vm.list[0] || null);
-            }
+            _setSelected(vm.list[0] || null);
 
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }

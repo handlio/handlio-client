@@ -7,7 +7,10 @@
     _notification.$inject = ['$log', 'toastr'];
 
     function _notification($log, toastr) {
-        
+
+        toastr.options.preventDuplicates = true;
+        toastr.options.progressBar = true;
+
         return {
             showToasts: true,
 
