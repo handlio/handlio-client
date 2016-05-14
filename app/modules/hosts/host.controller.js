@@ -14,16 +14,13 @@
         vm.list = HostStore.get('list') || [];
 
         vm.new = defaults.host();
-        vm.model = {
-            keys: '',
-            window: '[ACTIVE]', // todo: sync in local storage
-            selected: HostStore.get('selected') || vm.list[0] || null
-        };
+        vm.model = {};
 
+        vm.model.selected = HostStore.get('selected') || vm.list[0] || null;
         (!!vm.model.selected) && (vm.model.selectedUrl = vm.model.selected.url);
 
         vm.addHost = _addHost;
-        vm.saveSelected = _saveSelected;
+        vm.saveSelected = _saveSelectedHost;
         vm.removeHost = _removeHost;
 
         // private functions
@@ -39,10 +36,10 @@
             vm.model.selected = newHost;
             vm.model.selectedUrl = newHost.url;
 
-            _saveSelected(newHost);
+            _saveSelectedHost(newHost);
         }
 
-        function _saveSelected(host) {
+        function _saveSelectedHost(host) {
             HostStore.set('selected', host);
             $log.info("Switched to another host - ", host.url + ", " + host.name);
         }

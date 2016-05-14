@@ -8,7 +8,8 @@
 
     function _directive() {
         return {
-            templateUrl: 'modules/command-sender/command-sender.html'
+            templateUrl: 'modules/command-sender/command-sender.html',
+            controller: 'CommandSenderController as commandSender'
         };
     }
 
