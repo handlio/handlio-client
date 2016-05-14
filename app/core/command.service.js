@@ -11,13 +11,18 @@
 
         this.send = _send;
 
-        function _send(keys) {
+        function _send(keys, windowName) {
             var selectedHost = HostStore.get('selected');
+
+            if (!selectedHost) {
+                throw new Error('Host is not specified.');
+            }
+
             var selectedUrl = selectedHost.url;
 
             var url = 'http://' + selectedUrl + '/' + options.api.route;
 
-            return $http.post(url, { keys: keys }, { cache: false }).then(function (res) {
+            return $http.post(url, { keys: keys, window: windowName }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);
             }, function (err) {
                 $log.debug('Failed: ', err);
