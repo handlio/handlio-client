@@ -16,7 +16,7 @@
                ng-click="hosts.addHost(hosts.new)" ng-disabled="userForm.$invalid" value="Add">
     </div>
 </form>
-
+<!---->
 <div class="row block" style="margin-left: 0;">
     <div class="row" style="margin-left: 0;"
          ng-repeat="host in hosts.list track by host.url | orderBy:'-createdAt'">
@@ -25,8 +25,10 @@
                value="{{host.url}}"
                ng-model="hosts.model.selectedUrl"
                ng-change="hosts.saveSelected(host);">
-        <label for="hostRadio-{{host.url}}">{{host.name}} - {{host.url}}</label>
-        <button class="btn btn-warning btn-xs" ng-click="hosts.removeHost(host)">x</button>
+        <label for="hostRadio-{{host.url}}">
+            {{host.name}} - {{host.url}}
+            <button class="btn btn-warning btn-xs" ng-click="hosts.removeHost(host, $index)">x</button>
+        </label>
 
     </div>
 </div>

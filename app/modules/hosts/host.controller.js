@@ -20,7 +20,7 @@
         (!!vm.model.selected) && (vm.model.selectedUrl = vm.model.selected.url);
 
         vm.addHost = _addHost;
-        vm.saveSelected = _saveSelectedHost;
+        vm.saveSelected = _saveSelectedHostToStore;
         vm.removeHost = _removeHost;
 
         // private functions
@@ -32,21 +32,30 @@
             $log.info("Added new host - ", newHost.url + ", " + newHost.name);
 
             vm.new = defaults.host();
-            
-            vm.model.selected = newHost;
-            vm.model.selectedUrl = newHost.url;
 
-            _saveSelectedHost(newHost);
+            _setSelected(newHost);
         }
 
-        function _saveSelectedHost(host) {
+        function _setSelected(host) {
+            vm.model.selected = host;
+            vm.model.selectedUrl = vm.model.selected.url;
+
+            _saveSelectedHostToStore(host);
+        }
+
+        function _saveSelectedHostToStore(host) {
             HostStore.set('selected', host);
             $log.info("Switched to another host - ", host.url + ", " + host.name);
         }
 
         function _removeHost(host, index) {
+            if (vm.model.selected === host) {
+                _setSelected(vm.list[0] || null);
+            }
+
             vm.list.splice(index, 1);
             HostStore.set('list', vm.list);
+
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }
 
