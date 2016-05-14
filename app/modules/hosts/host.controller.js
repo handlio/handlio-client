@@ -44,7 +44,12 @@
         }
 
         function _saveSelectedHostToStore(host) {
-            HostStore.set('selected', host);
+            if (host) {
+                HostStore.set('selected', host);
+            }
+            else  {
+                HostStore.remove('selected');
+            }
             host && $log.info("Switched to another host - ", host.url + ", " + host.name);
         }
 
