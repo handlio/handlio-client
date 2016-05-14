@@ -13,11 +13,15 @@
 
         function _send(keys, windowName) {
             var selectedHost = HostStore.get('selected');
+
+            if (!selectedHost) {
+                throw new Error('Host is not specified.');
+            }
+
             var selectedUrl = selectedHost.url;
 
             var url = 'http://' + selectedUrl + '/' + options.api.route;
 
-            windowName = windowName || '[ACTIVE]';
             return $http.post(url, { keys: keys, window: windowName }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);
             }, function (err) {
