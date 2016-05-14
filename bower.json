@@ -12,7 +12,8 @@
     "a0-angular-storage": "^0.0.15",
     "bootstrap": "^3.3.6",
     "bootstrap-toggle": "~2.2.2",
-    "angular-ui-router": "ui-router#^0.2.18"
+    "angular-ui-router": "ui-router#^0.2.18",
+    "toastr": "^2.1.2"
   },
   "resolutions": {
     "angular": "~1.5.5"

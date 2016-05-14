@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.core');
 
-    _service.$inject = ['$http', '$log', 'HostStore'];
+    _service.$inject = ['$http', '$log', 'HostStore', 'notification'];
     module.service('CommandService', _service);
 
-    function _service($http, $log, HostStore) {
+    function _service($http, $log, HostStore, notification) {
         var options = { api: { route: 'api/handle' } };
 
         this.send = _send;
@@ -15,7 +15,7 @@
             var selectedHost = HostStore.get('selected');
 
             if (!selectedHost) {
-                throw new Error('Host is not specified.');
+                return notification.error('Host is not specified.', 'Configuration Error');
             }
 
             var selectedUrl = selectedHost.url;
