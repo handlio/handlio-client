@@ -1,0 +1,39 @@
+# environment
+
+environment:
+  nodejs_version: "5"
+
+  NODE_ENV: test
+  DEBUG: false
+
+# general
+
+version: 1.0.{build}
+
+skip_tags: true
+cache:
+  - C:\Users\appveyor\AppData\Roaming\npm\node_modules -> package.json  # global npm modules
+  - C:\Users\appveyor\AppData\Roaming\npm-cache -> package.json         # npm cache
+  - node_modules -> package.json
+  - app\bower_components -> bower.json
+
+platform:
+  - x64
+
+# build
+
+build: off
+
+install:
+  - cmd: npm install
+  - cmd: npm install -g gulp
+  - cmd: npm install -g bower
+  - cmd: bower install
+
+init:
+  - ps: $env:IS_PR = (-not (-not ($env:APPVEYOR_PULL_REQUEST_NUMBER)))
+
+# tests
+
+test_script:
+  - cmd: gulp lint

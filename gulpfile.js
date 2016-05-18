@@ -7,5 +7,5 @@ tasks.forEach(function (taskName) {
 
     if (fs.lstatSync(modulePath).isDirectory()) return;
 
-    require(modulePath);
+    require(modulePath); // eslint-disable-line global-require
 });

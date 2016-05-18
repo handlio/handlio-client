@@ -11,7 +11,7 @@
 
         vm.command = {
             keys: '',
-            window: '[ACTIVE]', // todo: sync in local storage
+            window: '[ACTIVE]' // todo: sync in local storage
         };
 
         // private functions
