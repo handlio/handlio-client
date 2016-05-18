@@ -1,10 +1,14 @@
 <div class="container">
     <div class="row block">
-        <input type="checkbox"
+        <input type="checkbox" class="pull-right"
                data-toggle="toggle" title="Show/Hide configurator"
                data-off="Configure" data-on="Hide"
                data-offstyle="warning" data-onstyle="default"
-               toggle-action="{ fn: screen.toggleConfig, value: !screen.panels.configurator.visible }">
+               toggle-action="{
+                    fn: screen.toggleConfig,
+                    value: !screen.panels.configurator.visible,
+                    css: 'pull-right'
+               }">
     </div>
 
     <!-- Configuration block -->
