@@ -4,22 +4,25 @@
                data-toggle="toggle" title="Show/Hide configurator"
                data-off="Configure" data-on="Hide"
                data-offstyle="warning" data-onstyle="default" data-style="pull-right"
-               toggle-action="{
-                    fn: screen.toggleConfig,
-                    value: !screen.panels.configurator.visible
-               }">
+               toggle-action="{ fn: screen.toggleConfig, value: !screen.panels.configurator.visible }">
+
+        <input type="checkbox"
+               data-toggle="toggle" title="Show/Hide command sender"
+               data-off="Command" data-on="Command"
+               data-offstyle="warning" data-onstyle="default" data-style="pull-right"
+               toggle-action="{ fn: screen.toggleCommandSender, value: !screen.panels.commandSender.visible }">
     </div>
 
     <!-- Configuration block -->
     <div configurator ng-show="!screen.panels.configurator.visible"></div>
 
     <div ng-repeat="plugin in screen.plugins">
-        <a class="btn" ui-sref="plugin({plugin: plugin.name})">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
+        <a class="btn" ui-sref="plugin({ plugin: plugin.name })">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
     </div>
 
     <div ui-view></div>
 
-    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="!screen.panels['command-sender'].visible">
+    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="!screen.panels.commandSender.visible">
         <div command-sender></div>
     </footer>
 </div>
