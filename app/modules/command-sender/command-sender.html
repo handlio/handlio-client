@@ -1,9 +1,9 @@
 <form name="keysForm" novalidate class="navbar-form navbar-left command-sender">
     <div class="form-group">
-        <div class="col-xs-4"
+        <div class="col-xs-5"
              ng-class="{ 'has-error': keysForm.keys.$dirty && keysForm.keys.$invalid }">
             <input name="keys" type="text" class="form-control" title="Keys"
-                   ng-model="commandSender.command.keys" required placeholder="Command text">
+                   ng-model="commandSender.command.keys" required placeholder="Command">
         </div>
         <div class="col-xs-4"
              ng-class="{ 'has-error': keysForm.windowName.$dirty && keysForm.windowName.$invalid }">
