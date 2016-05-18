@@ -1,5 +1,5 @@
-<div class="row">
-    <form name="keysForm" novalidate class="row block">
+<form name="keysForm" novalidate class="navbar-form navbar-left command-sender">
+    <div class="form-group">
         <div class="col-xs-4"
              ng-class="{ 'has-error': keysForm.keys.$dirty && keysForm.keys.$invalid }">
             <input name="keys" type="text" class="form-control" title="Keys"
@@ -11,8 +11,8 @@
                    ng-model="commandSender.command.window" required placeholder="Window name"
                    ng-change="commandSender.saveWindow(commandSender.command.window);">
         </div>
-        <input type="submit" class="btn btn-warning col-xs-2"
-               ng-click="$root.commands.send(commandSender.command.keys, commandSender.command.window)"
-               ng-disabled="keysForm.$invalid" value="Send">
-    </form>
-</div>
+    </div>
+    <button type="submit" class="btn btn-warning" style="margin-right: 5px;"
+           ng-click="$root.commands.send(commandSender.command.keys, commandSender.command.window)"
+           ng-disabled="keysForm.$invalid">Send</button>
+</form>
