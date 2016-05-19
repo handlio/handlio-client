@@ -9,7 +9,8 @@ var paths = {
 
 var config = {
     html: path.join(paths.app, '/**/*.html'),
-    js: path.join(paths.app, '/**/*.js')
+    js: path.join(paths.app, '/**/*.js'),
+    css: path.join(paths.app, '/**/*.css')
 };
 
 gulp.task('livereload', ['connect', 'watch']);
@@ -24,7 +25,7 @@ gulp.task('connect', function () {
 });
 
 gulp.task('watch', function () {
-    return gulp.watch([config.html, config.js], ['html', 'js']);
+    return gulp.watch([config.html, config.js, config.css], ['html', 'js', 'css']);
 });
 
 gulp.task('html', function () {
@@ -33,4 +34,8 @@ gulp.task('html', function () {
 
 gulp.task('js', function () {
     return gulp.src(config.js).pipe(connect.reload());
+});
+
+gulp.task('css', function () {
+    return gulp.src(config.css).pipe(connect.reload());
 });

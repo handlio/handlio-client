@@ -24,7 +24,7 @@
             var toggleInitialValue = scope.toggleAction.value;
             if (typeof toggleInitialValue !== 'boolean')
                 throw new Error("Value was not provided.");
-
+            
             $(elm).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
 
             $(elm).change(function () {

@@ -11,7 +11,7 @@
 
         vm.panels = {
             'configurator': { name: 'configurator', storeKey: 'config:state', visible: '' },
-            'command-sender': { name: 'command-sender', storeKey: 'command-sender:state', visible: '' }
+            'commandSender': { name: 'command-sender', storeKey: 'command-sender:state', visible: '' }
         };
 
         for (var panelName in vm.panels) {
@@ -25,7 +25,7 @@
         vm.plugins = PluginTracker.getPlugins();
 
         vm.toggleConfig = _toggleVisibility.bind(null, 'configurator');
-        vm.toggleCommandSender = _toggleVisibility.bind(null, 'command-sender');
+        vm.toggleCommandSender = _toggleVisibility.bind(null, 'commandSender');
 
         // private functions
 
