@@ -17,7 +17,9 @@
         vm.model = {};
 
         vm.model.selected = HostStore.get('selected') || vm.list[0] || null;
-        (!!vm.model.selected) && (vm.model.selectedUrl = vm.model.selected.url);
+        if (vm.model.selected) {
+            vm.model.selectedUrl = vm.model.selected.url;
+        }
 
         vm.addHost = _addHost;
         vm.saveSelected = _saveSelectedHostToStore;
