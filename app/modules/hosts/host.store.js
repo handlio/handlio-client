@@ -8,10 +8,10 @@
 
     function _hostStoreFactory(store) {
         return store.getNamespacedStore(
-            'hosts' /*namespace*/,
-            'localStorage' /*storage type*/,
-            ':' /*delimiter*/,
-            false /*useCache*/);
+            'hosts'         /* namespace */,
+            'localStorage'  /* storage type */,
+            ':'             /* delimiter */,
+            false           /* useCache */);
     }
 
 })(angular);
