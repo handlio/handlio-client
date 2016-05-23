@@ -13,9 +13,9 @@ var config = {
     css: path.join(paths.app, '/**/*.css')
 };
 
-gulp.task('livereload', ['connect', 'watch']);
+gulp.task('livereload', ['livereload-connect', 'livereload-watch']);
 
-gulp.task('connect', function () {
+gulp.task('livereload-connect', function () {
     connect.server({
         root: paths.app,
         livereload: true,
@@ -24,18 +24,21 @@ gulp.task('connect', function () {
     });
 });
 
-gulp.task('watch', function () {
-    return gulp.watch([config.html, config.js, config.css], ['html', 'js', 'css']);
+gulp.task('livereload-watch', function () {
+    return gulp.watch(
+        [config.html, config.js, config.css],
+        ['livereload-html', 'livereload-js', 'livereload-css']
+    );
 });
 
-gulp.task('html', function () {
+gulp.task('livereload-html', function () {
     return gulp.src(config.html).pipe(connect.reload());
 });
 
-gulp.task('js', function () {
+gulp.task('livereload-js', function () {
     return gulp.src(config.js).pipe(connect.reload());
 });
 
-gulp.task('css', function () {
+gulp.task('livereload-css', function () {
     return gulp.src(config.css).pipe(connect.reload());
 });
