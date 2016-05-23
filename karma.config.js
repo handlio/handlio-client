@@ -14,14 +14,46 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'app/**/*.js',
+            'app/bower_components/angular/angular.js',
+            'app/bower_components/jquery/dist/jquery.js',
+            'app/bower_components/bootstrap-toggle/js/bootstrap-toggle.js',
+            'app/bower_components/angular-route/angular-route.js',
+            'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/bower_components/angular-ui-router/release/angular-ui-router.js',
+            'app/bower_components/a0-angular-storage/dist/angular-storage.js',
+            'app/bower_components/toastr/toastr.js',
+            'app/bower_components/lodash/dist/lodash.js',
+
+            'app/app.module.js',
+            'app/core/core.module.js',
+            'app/modules/command-sender/commands.module.js',
+            'app/modules/configurator/configurator.module.js',
+            'app/modules/hosts/hosts.module.js',
+            'app/modules/screen/screen.module.js',
+            'app/components/components.module.js',
+            'app/plugins/plugins.module.js',
+            'app/plugins/player/player.module.js',
+
+            'app/*.js',
+            'app/core/**/*.js',
+            'app/components/**/*.js',
+            'app/modules/**/*.js',
+            'app/plugins/**/*.js',
+
             'tests/**/*.js'
         ],
 
 
         // list of files to exclude
-        exclude: [
-            'app/bower_components/**/*.js'
+        exclude: [],
+
+
+        // Karma will require() these plugins
+        plugins: [
+            'karma-tap',
+            'karma-chrome-launcher',
+            'karma-phantomjs-launcher',
+            'karma-browserify'
         ],
 
 
@@ -30,7 +62,6 @@ module.exports = function (config) {
         preprocessors: {
             'tests/**/*.js': ['browserify']
         },
-
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -57,12 +88,13 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', 'Firefox', 'phantomjs'],
+        browsers: [/*'Chrome', */'PhantomJS'/*, 'Firefox'*/],
 
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
+
 
         // Concurrency level
         // how many browser should be started simultaneous

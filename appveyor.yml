@@ -36,4 +36,4 @@ init:
 # tests
 
 test_script:
-  - cmd: gulp lint
+  - cmd: gulp build
