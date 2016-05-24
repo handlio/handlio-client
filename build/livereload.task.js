@@ -1,7 +1,10 @@
-var path = require('path');
+// dependencies
 
+var path = require('path');
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+
+// initialization
 
 var paths = {
     app: path.join(__dirname, '../app')
@@ -12,6 +15,8 @@ var config = {
     js: path.join(paths.app, '/**/*.js'),
     css: path.join(paths.app, '/**/*.css')
 };
+
+// tasks
 
 gulp.task('livereload', ['livereload-connect', 'livereload-watch']);
 
@@ -24,21 +29,23 @@ gulp.task('livereload-connect', function () {
     });
 });
 
+var reloaderTasks = [];
+for (var key in config) {
+    if (!config.hasOwnProperty(key)) continue;
+
+    var reloaderName = 'livereload-' + key;
+    gulp.task(reloaderName, _getReloader(config[key]));
+    reloaderTasks.push(reloaderName);
+}
+
 gulp.task('livereload-watch', function () {
-    return gulp.watch(
-        [config.html, config.js, config.css],
-        ['livereload-html', 'livereload-js', 'livereload-css']
-    );
+    return gulp.watch([config.html, config.js, config.css], reloaderTasks);
 });
 
-gulp.task('livereload-html', function () {
-    return gulp.src(config.html).pipe(connect.reload());
-});
+// private methods
 
-gulp.task('livereload-js', function () {
-    return gulp.src(config.js).pipe(connect.reload());
-});
-
-gulp.task('livereload-css', function () {
-    return gulp.src(config.css).pipe(connect.reload());
-});
+function _getReloader(src) {
+    return function () {
+        return gulp.src(src).pipe(connect.reload());
+    }
+}
