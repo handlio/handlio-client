@@ -16,10 +16,12 @@
     "karma-browserify": "^5.0.5",
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.0.0",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-tap": "^1.0.4",
     "phantomjs-prebuilt": "^2.1.7",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "predev": "npm install && bower install && npm i gulp -g",

@@ -42,7 +42,7 @@ init:
 # tests
 
 test_script:
-  - cmd: gulp build
+  - cmd: gulp ci-build
 
 on_success:
   - ps: >-

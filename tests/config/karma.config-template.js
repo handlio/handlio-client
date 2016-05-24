@@ -1,7 +1,7 @@
-// Karma configuration
+// karma configuration
 
-module.exports = function (config) {
-    config.set({
+module.exports = function (config, extensions, options) {
+    var baseConfig = {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
@@ -40,7 +40,7 @@ module.exports = function (config) {
             'app/modules/**/*.js',
             'app/plugins/**/*.js',
 
-            'tests/**/*.js'
+            'tests/unit/**/*.js'
         ],
 
 
@@ -51,7 +51,6 @@ module.exports = function (config) {
         // Karma will require() these plugins
         plugins: [
             'karma-tap',
-            'karma-chrome-launcher',
             'karma-phantomjs-launcher',
             'karma-browserify',
             'karma-coverage'
@@ -61,7 +60,7 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'tests/**/*.js': ['browserify'],
+            'tests/unit/**/*.js': ['browserify'],
             'app/*.js': ['coverage'],
             'app/core/**/*.js': ['coverage'],
             'app/components/**/*.js': ['coverage'],
@@ -102,7 +101,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [/*'Chrome', */'PhantomJS'/*, 'Firefox'*/],
+        browsers: ['PhantomJS'],
 
 
         // Continuous Integration mode
@@ -113,5 +112,20 @@ module.exports = function (config) {
         // Concurrency level
         // how many browser should be started simultaneous
         concurrency: Infinity
-    })
+    };
+
+    var conf = _extend(baseConfig, extensions);
+    Array.prototype.push.apply(conf.plugins, options.plugins);
+    Array.prototype.push.apply(conf.browsers, options.browsers);
+    config.set(conf);
 };
+
+function _extend(dist, src) {
+    for (var key in src) {
+        if (src.hasOwnProperty(key)) {
+            dist[key] = src[key];
+        }
+    }
+
+    return dist;
+}

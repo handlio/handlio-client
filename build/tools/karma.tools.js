@@ -1,27 +1,21 @@
 // dependencies
 
-var gulp = require('gulp');
 var gutil = require('gulp-util');
 var karma = require('karma');
-var path = require('path');
-
-// initialization
 
 var karmaServer = karma.Server;
 
-// tasks
+// exports
 
-gulp.task('test', function (done) {
-    var karmaConfigFile = path.join(__dirname, '../', 'karma.config.js');
+module.exports = {
+    createServer: _createServer
+};
 
-    var server = _buildKarmaServer({ configFile: karmaConfigFile }, done);
-
-    server.start();
-});
+// initialization
 
 // private methods
 
-function _buildKarmaServer(config, done) {
+function _createServer(config, done) {
     var server = new karmaServer(config);
 
     server.on('browser_error', function (browser, err) {
