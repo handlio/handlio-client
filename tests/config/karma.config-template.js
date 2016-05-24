@@ -114,9 +114,11 @@ module.exports = function (config, extensions, options) {
         concurrency: Infinity
     };
 
-    var conf = _extend(baseConfig, extensions);
-    Array.prototype.push.apply(conf.plugins, options.plugins);
-    Array.prototype.push.apply(conf.browsers, options.browsers);
+    var conf = _extend(baseConfig, extensions || {});
+    if (options) {
+        options.plugins && (Array.prototype.push.apply(conf.plugins, options.plugins));
+        options.browsers && (Array.prototype.push.apply(conf.browsers, options.browsers));
+    }
     config.set(conf);
 };
 
