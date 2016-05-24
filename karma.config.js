@@ -53,20 +53,34 @@ module.exports = function (config) {
             'karma-tap',
             'karma-chrome-launcher',
             'karma-phantomjs-launcher',
-            'karma-browserify'
+            'karma-browserify',
+            'karma-coverage'
         ],
 
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'tests/**/*.js': ['browserify']
+            'tests/**/*.js': ['browserify'],
+            'app/*.js': ['coverage'],
+            'app/core/**/*.js': ['coverage'],
+            'app/components/**/*.js': ['coverage'],
+            'app/modules/**/*.js': ['coverage'],
+            'app/plugins/**/*.js': ['coverage']
+        },
+
+        // optionally, configure the reporter
+        coverageReporter: {
+            dir: 'reports/',
+            reporters: [
+                { type: 'lcov', subdir: 'lcov' }
+            ]
         },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
 
 
         // web server port
