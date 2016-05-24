@@ -14,6 +14,7 @@ module.exports = function (config, extensions, options) {
 
         // list of files / patterns to load in the browser
         files: [
+            'tests/mocks/tape.mock.js',
             'app/bower_components/angular/angular.js',
             'app/bower_components/jquery/dist/jquery.js',
             'app/bower_components/bootstrap-toggle/js/bootstrap-toggle.js',
@@ -61,6 +62,8 @@ module.exports = function (config, extensions, options) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'tests/unit/**/*.js': ['browserify'],
+            'tests/mocks/**/*.js': ['browserify'],
+            
             'app/*.js': ['coverage'],
             'app/core/**/*.js': ['coverage'],
             'app/components/**/*.js': ['coverage'],
