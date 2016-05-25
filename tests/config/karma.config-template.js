@@ -14,7 +14,7 @@ module.exports = function (config, extensions, options) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/mocks/tape.mock.js',
+            'tests/mocks/angular-mocks.init.js',
             'app/bower_components/angular/angular.js',
             'app/bower_components/jquery/dist/jquery.js',
             'app/bower_components/bootstrap-toggle/js/bootstrap-toggle.js',
@@ -24,6 +24,8 @@ module.exports = function (config, extensions, options) {
             'app/bower_components/a0-angular-storage/dist/angular-storage.js',
             'app/bower_components/toastr/toastr.js',
             'app/bower_components/lodash/dist/lodash.js',
+
+            'tests/mocks/**/*.js',
 
             'app/app.module.js',
             'app/core/core.module.js',

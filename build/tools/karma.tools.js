@@ -15,7 +15,7 @@ module.exports = {
 
 // private methods
 
-function _createServer(config, done) {
+function _createServer(config, options, done) {
     var server = new karmaServer(config);
 
     server.on('browser_error', function (browser, err) {
@@ -28,7 +28,7 @@ function _createServer(config, done) {
             throw new Error('Karma: Tests Failed');
         }
         gutil.log('Karma Run Complete: No Failures');
-        done();
+        if (options.singleRun) done();
     });
 
     return server;
