@@ -5,14 +5,28 @@
   "repository": "https://github.com/handlio/handlio-client.git",
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^13.0.1",
     "gulp": "^3.9.1",
     "gulp-connect": "^4.0.0",
+    "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^1.1.1",
+    "gulp-util": "latest",
+    "istanbul": "^0.4.3",
     "karma": "^0.13.22",
-    "tape": "^4.5.1"
+    "karma-browserify": "^5.0.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-tap": "^1.0.4",
+    "phantomjs-prebuilt": "^2.1.7",
+    "tape": "^4.5.1",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "predev": "npm install && bower install && npm i gulp -g",
-    "dev": "gulp livereload"
+    "dev": "gulp livereload",
+    "pretest": "npm install && bower install && npm i gulp -g",
+    "test": "gulp test"
   }
 }

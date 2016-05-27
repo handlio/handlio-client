@@ -6,6 +6,12 @@ environment:
   NODE_ENV: test
   DEBUG: false
 
+  # coverage
+
+  COVERALLS_GIT_BRANCH: '$(APPVEYOR_REPO_BRANCH)'
+  COVERALLS_REPO_TOKEN:
+    secure: A4pLKkuAQJBB+kE/zmeyILeckEspbYZADxDvnBLbaG+mbkEzjs12rp1rdce+6LM2
+
 # general
 
 version: 1.0.{build}
@@ -36,4 +42,10 @@ init:
 # tests
 
 test_script:
-  - cmd: gulp lint
+  - cmd: gulp ci-build
+
+on_success:
+  - ps: >-
+      if($env:IS_PR -eq 'False') {
+         gulp coveralls
+      }

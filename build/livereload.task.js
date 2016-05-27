@@ -1,7 +1,10 @@
-var path = require('path');
+// dependencies
 
+var path = require('path');
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+
+// initialization
 
 var paths = {
     app: path.join(__dirname, '../app')
@@ -13,9 +16,11 @@ var config = {
     css: path.join(paths.app, '/**/*.css')
 };
 
-gulp.task('livereload', ['connect', 'watch']);
+// tasks
 
-gulp.task('connect', function () {
+gulp.task('livereload', ['livereload-connect', 'livereload-watch']);
+
+gulp.task('livereload-connect', function () {
     connect.server({
         root: paths.app,
         livereload: true,
@@ -24,18 +29,23 @@ gulp.task('connect', function () {
     });
 });
 
-gulp.task('watch', function () {
-    return gulp.watch([config.html, config.js, config.css], ['html', 'js', 'css']);
+var reloaderTasks = [];
+for (var key in config) {
+    if (!config.hasOwnProperty(key)) continue;
+
+    var reloaderName = 'livereload-' + key;
+    gulp.task(reloaderName, _getReloader(config[key]));
+    reloaderTasks.push(reloaderName);
+}
+
+gulp.task('livereload-watch', function () {
+    return gulp.watch([config.html, config.js, config.css], reloaderTasks);
 });
 
-gulp.task('html', function () {
-    return gulp.src(config.html).pipe(connect.reload());
-});
+// private methods
 
-gulp.task('js', function () {
-    return gulp.src(config.js).pipe(connect.reload());
-});
-
-gulp.task('css', function () {
-    return gulp.src(config.css).pipe(connect.reload());
-});
+function _getReloader(src) {
+    return function () {
+        return gulp.src(src).pipe(connect.reload());
+    }
+}
