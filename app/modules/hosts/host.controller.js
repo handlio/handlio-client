@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.hosts');
 
-    _hostController.$inject = ['$log', 'HostStore'];
+    _hostController.$inject = ['$log', 'HostStore', 'HostState'];
     module.controller('HostsController', _hostController);
 
-    function _hostController($log, HostStore) {
+    function _hostController($log, HostStore, HostState) {
         var defaults = { host: _defaultHost };
 
         var vm = this;
@@ -18,6 +18,7 @@
 
         vm.model.selected = HostStore.get('selected') || vm.list[0] || null;
         if (vm.model.selected) {
+            HostState.change(vm.model.selected);
             vm.model.selectedUrl = vm.model.selected.url;
         }
 
@@ -48,10 +49,12 @@
         function _saveSelectedHostToStore(host) {
             if (host) {
                 HostStore.set('selected', host);
+                HostState.change(host);
                 $log.info("Switched to another host - ", host.url + ", " + host.name);
             }
             else {
                 HostStore.remove('selected');
+                HostState.change(null);
             }
         }
 

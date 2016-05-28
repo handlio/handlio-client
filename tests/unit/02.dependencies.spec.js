@@ -39,7 +39,11 @@ test("Modules dependencies: ", function (assert) {
 
     var hostsModule = angular.module('handlio.client.hosts');
     assert.ok(hostsModule, 'hostsModule');
-    assert.deepEqual(hostsModule.requires, ['angular-storage', 'handlio.client.components'], 'hostsModule dependencies');
+    assert.deepEqual(hostsModule.requires, [
+        'angular-storage',
+        'handlio.client.core',
+        'handlio.client.components'
+    ], 'hostsModule dependencies');
 
     var componentsModule = angular.module('handlio.client.components');
     assert.ok(componentsModule, 'componentsModule');
