@@ -3,8 +3,6 @@ var tape = require('tape');
 var test = tape.angular.wrap();
 
 test("Modules dependencies: ", function (assert) {
-    angular.mock.module('handlio.client');
-
     var handlioModule = angular.module('handlio.client');
     assert.ok(handlioModule, 'handlioModule');
     assert.deepEqual(handlioModule.requires, ['handlio.client.screen', 'handlio.client.plugins'], 'handlioModule dependencies');
