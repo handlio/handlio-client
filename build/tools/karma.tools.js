@@ -25,9 +25,11 @@ function _createServer(config, options, done) {
 
     server.on('run_complete', function (browsers, results) {
         if (results.failed) {
-            throw new Error('Karma: Tests Failed');
+            if (options.singleRun) {
+                return done(new Error('Karma: Tests Failed'));
+            }
+            return;
         }
-        gutil.log('Karma Run Complete: No Failures');
         if (options.singleRun) done();
     });
 
