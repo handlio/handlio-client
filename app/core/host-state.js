@@ -17,7 +17,7 @@
         // private functions
 
         function _change(host) {
-            state.host(host);
+            state.host = host;
             $log.info('Host has been changed to ', JSON.stringify(host));
         }
 

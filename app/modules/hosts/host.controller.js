@@ -50,7 +50,6 @@
             if (host) {
                 HostStore.set('selected', host);
                 HostState.change(host);
-                $log.info("Switched to another host - ", host.url + ", " + host.name);
             }
             else {
                 HostStore.remove('selected');
