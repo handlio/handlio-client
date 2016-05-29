@@ -14,12 +14,12 @@ tape.angular = {
 
 function _beforeEach(assert) {
     tape.angular.beforeEach();
-    console.log('beforeEach');
+    console.log('Angular-mocks preparation');
     assert.end();
 }
 
 function _afterEach(assert) {
     tape.angular.afterEach();
-    console.log('afterEach');
+    console.log('Angular-mocks cleanup');
     assert.end();
 }
