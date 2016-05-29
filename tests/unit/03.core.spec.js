@@ -178,7 +178,7 @@ function _getToastrMock() {
 
 function _getNotificationMock() {
     var mockValue = {
-        error: _noop,
+        error: _noop
     };
     mockValue.mock = sinon.mock(mockValue);
     return mockValue;
