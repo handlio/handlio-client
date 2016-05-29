@@ -20,6 +20,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-tap": "^1.0.4",
     "phantomjs-prebuilt": "^2.1.7",
+    "sinon": "^1.17.4",
     "tape": "^4.5.1",
     "watchify": "^3.7.0"
   },

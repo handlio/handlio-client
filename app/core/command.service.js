@@ -26,7 +26,7 @@
             return $http.post(url, { keys: keys, window: windowName }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);
             }, function (err) {
-                $log.debug('Failed: ', err);
+                notification.error('Failed: ' + err, 'Server Error');
             });
         }
     }
