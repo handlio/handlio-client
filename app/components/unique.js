@@ -24,7 +24,9 @@
                     return false;
                 }
 
-                if (!list || list.length === 0) return true;
+                if (!list || list.length === 0) {
+                    return true;
+                }
 
                 var found = list.filter(function (el) {
                     return modelValue === el[key];
