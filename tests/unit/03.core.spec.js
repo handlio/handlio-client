@@ -114,14 +114,14 @@ test("Command service: ", function (assert) {
 
         assert.doesNotThrow(function () {
             $httpBackend.expect('POST', route, { keys: 'Keys', window: 'Test' }).respond(200, '');
-            CommandService.send('Keys', 'Test');
+            CommandService.send('Keys', 'Test').then(_success(assert), _failed(assert));
         }, 'should send successfully with all arguments');
 
         assert.doesNotThrow(function () {
             $httpBackend.flush();
 
             $httpBackend.expect('POST', route, { keys: 'Keys', window: '[ACTIVE]' }).respond(200, '');
-            CommandService.send('Keys');
+            CommandService.send('Keys').then(_success(assert), _failed(assert));
         }, "should send successfully without window argument. should use '[ACTIVE]' window argument");
 
         state.host = null;
@@ -130,7 +130,7 @@ test("Command service: ", function (assert) {
             $httpBackend.flush();
 
             notification.mock.expects('error').once();
-            CommandService.send('Keys');
+            CommandService.send('Keys').then(_success(assert), _failed(assert));
             notification.mock.verify();
         }, "should throw error notification when host is not selected");
 
@@ -138,7 +138,7 @@ test("Command service: ", function (assert) {
 
         assert.doesNotThrow(function () {
             $httpBackend.expect('POST', route, { keys: '', window: '[ACTIVE]' }).respond(400);
-            CommandService.send('');
+            CommandService.send('').then(_success(assert), _failed(assert));
             $httpBackend.flush();
         }, "should throw an error when keys is not specified");
 
@@ -151,6 +151,18 @@ test("Command service: ", function (assert) {
 
 function _noop() {
 
+}
+
+function _success(assert) {
+    return function () {
+        assert.true(true);
+    };
+}
+
+function _failed(assert) {
+    return function () {
+        assert.true(false);
+    };
 }
 
 function _getLogMock() {
