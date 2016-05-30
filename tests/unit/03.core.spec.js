@@ -155,13 +155,13 @@ function _noop() {
 
 function _success(assert) {
     return function () {
-        assert.true(true);
+        assert.true(true, 'success stub');
     };
 }
 
 function _failed(assert) {
     return function () {
-        assert.true(false);
+        assert.true(false, 'failed stub');
     };
 }
 
