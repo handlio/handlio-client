@@ -6,3 +6,4 @@ Dev: [![Build status](https://ci.appveyor.com/api/projects/status/wbm347n7ccibum
 
 Code-Quality: [![Code Climate](https://codeclimate.com/github/handlio/handlio-client/badges/gpa.svg)](https://codeclimate.com/github/handlio/handlio-client)
 [![Issue Count](https://codeclimate.com/github/handlio/handlio-client/badges/issue_count.svg)](https://codeclimate.com/github/handlio/handlio-client)
+[![Coverage Status](https://coveralls.io/repos/github/handlio/handlio-client/badge.svg?branch=tests)](https://coveralls.io/github/handlio/handlio-client?branch=tests)
