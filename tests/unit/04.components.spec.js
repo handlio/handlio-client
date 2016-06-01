@@ -77,120 +77,122 @@ test("'Unique' directive ", function (assert) {
     assert.end();
 });
 
-test("'Toggle action' directive ", function (assert) {
+test("'Toggle action' directive ", function (assert) { // eslint-disable-line max-statements
     angular.mock.module('handlio.client.components');
 
+    var _$compile, _$rootScope;
     inject(['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
-
-        var scope = $rootScope.$new();
-
-        scope.fn = _noop;
-        scope.value = true;
-
-        var element = angular.element(
-            '<input type="checkbox" toggle-action="{ fn: fn, value: value }">');
-
-        assert.doesNotThrow(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, "should compile Toggle action directive successfully with value=false and correct callback");
-
-        element = angular.element(
-            '<input type="checkbox" toggle-action="{ value: value }">');
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, "should not compile Toggle action directive successfully without 'fn' argument");
-
-        element = angular.element(
-            '<input type="checkbox" toggle-action="{ fn: fn }">');
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, /Value was not provided/, "should not compile Toggle action directive successfully without 'value' argument");
-
-        element = angular.element(
-            '<input type="checkbox" toggle-action="{}">');
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, /Callback was not provided/, "should not compile Toggle action directive successfully without 'fn' and 'value' arguments");
-
-        element = angular.element(
-            '<input type="checkbox" toggle-action>');
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, /Callback and value were not provided/, "should not compile Toggle action directive successfully with undefined toggle action value");
-
-        scope = $rootScope.$new();
-        scope.behaviour = { fn: _noop, value: false };
-
-        element = angular.element(
-            '<input type="checkbox" toggle-action="behaviour">');
-
-        assert.doesNotThrow(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, "should compile Toggle action directive successfully with value=false");
-
-        scope = $rootScope.$new();
-        scope.behaviour = { fn: _noop, value: {} };
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, /Value was not provided/, "should throw when 'value' is not a boolean type");
-
-        scope = $rootScope.$new();
-        scope.behaviour = { fn: {}, value: false };
-
-        assert.throws(function () {
-            $compile(element)(scope);
-            scope.$digest();
-        }, /Callback was not provided/, "should throw when 'fn' is not a function");
-
-        scope = $rootScope.$new();
-        scope.behaviour = { fn: _test1, value: false };
-
-        var compiled = $compile(element)(scope);
-        scope.$digest();
-
-        var isolatedScope = compiled.isolateScope();
-        isolatedScope.toggleAction.fn = _test2;
-        assert.equal(isolatedScope.toggleAction.fn, scope.behaviour.fn, "should change object from external scope when isolatedScope is changed");
-        isolatedScope.$destroy();
-
-        // todo: 
-        // scope.$destroy();
-        // scope = $rootScope.$new();
-        // var callback = sinon.spy();
-        //
-        // scope.behaviour = { fn: callback, value: false };
-        //
-        // compiled = $compile(element)(scope);
-        // scope.$digest();
-        //
-        // isolatedScope = compiled.isolateScope();
-        // assert.test("should not throw when input checked state has changed", function (assert) {
-        //     assert.plan(2);
-        //
-        //     assert.doesNotThrow(function () {
-        //         element.prop("checked", true);
-        //         scope.$apply();
-        //         // $timeout.flush();
-        //
-        //         // setTimeout(function () {
-        //             assert.true(callback.calledOnce);
-        //         // }, 300);
-        //     });
-        // });
-
+        _$compile = $compile;
+        _$rootScope = $rootScope;
     }]);
+
+    var scope = _$rootScope.$new();
+
+    scope.fn = _noop;
+    scope.value = true;
+
+    var element = angular.element(
+        '<input type="checkbox" toggle-action="{ fn: fn, value: value }">');
+
+    assert.doesNotThrow(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, "should compile Toggle action directive successfully with value=false and correct callback");
+
+    element = angular.element(
+        '<input type="checkbox" toggle-action="{ value: value }">');
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, "should not compile Toggle action directive successfully without 'fn' argument");
+
+    element = angular.element(
+        '<input type="checkbox" toggle-action="{ fn: fn }">');
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, /Value was not provided/, "should not compile Toggle action directive successfully without 'value' argument");
+
+    element = angular.element(
+        '<input type="checkbox" toggle-action="{}">');
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, /Callback was not provided/, "should not compile Toggle action directive successfully without 'fn' and 'value' arguments");
+
+    element = angular.element(
+        '<input type="checkbox" toggle-action>');
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, /Callback and value were not provided/, "should not compile Toggle action directive successfully with undefined toggle action value");
+
+    scope = _$rootScope.$new();
+    scope.behaviour = { fn: _noop, value: false };
+
+    element = angular.element(
+        '<input type="checkbox" toggle-action="behaviour">');
+
+    assert.doesNotThrow(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, "should compile Toggle action directive successfully with value=false");
+
+    scope = _$rootScope.$new();
+    scope.behaviour = { fn: _noop, value: {} };
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, /Value was not provided/, "should throw when 'value' is not a boolean type");
+
+    scope = _$rootScope.$new();
+    scope.behaviour = { fn: {}, value: false };
+
+    assert.throws(function () {
+        _$compile(element)(scope);
+        scope.$digest();
+    }, /Callback was not provided/, "should throw when 'fn' is not a function");
+
+    scope = _$rootScope.$new();
+    scope.behaviour = { fn: _test1, value: false };
+
+    var compiled = _$compile(element)(scope);
+    scope.$digest();
+
+    var isolatedScope = compiled.isolateScope();
+    isolatedScope.toggleAction.fn = _test2;
+    assert.equal(isolatedScope.toggleAction.fn, scope.behaviour.fn, "should change object from external scope when isolatedScope is changed");
+    isolatedScope.$destroy();
+
+    // todo:
+    // scope.$destroy();
+    // scope = _$rootScope.$new();
+    // var callback = sinon.spy();
+    //
+    // scope.behaviour = { fn: callback, value: false };
+    //
+    // compiled = _$compile(element)(scope);
+    // scope.$digest();
+    //
+    // isolatedScope = compiled.isolateScope();
+    // assert.test("should not throw when input checked state has changed", function (assert) {
+    //     assert.plan(2);
+    //
+    //     assert.doesNotThrow(function () {
+    //         element.prop("checked", true);
+    //         scope.$apply();
+    //         // $timeout.flush();
+    //
+    //         // setTimeout(function () {
+    //             assert.true(callback.calledOnce);
+    //         // }, 300);
+    //     });
+    // });
 
     assert.end();
 });
