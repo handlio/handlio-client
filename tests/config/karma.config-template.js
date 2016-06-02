@@ -43,6 +43,8 @@ module.exports = function (config, extensions, options) {
             'app/modules/**/*.js',
             'app/plugins/**/*.js',
 
+            'app/modules/**/*.html',
+
             'tests/unit/**/*.js'
         ],
 
@@ -56,7 +58,8 @@ module.exports = function (config, extensions, options) {
             'karma-tap',
             'karma-phantomjs-launcher',
             'karma-browserify',
-            'karma-coverage'
+            'karma-coverage',
+            'karma-ng-html2js-preprocessor'
         ],
 
 
@@ -70,7 +73,9 @@ module.exports = function (config, extensions, options) {
             'app/core/**/*.js': ['coverage'],
             'app/components/**/*.js': ['coverage'],
             'app/modules/**/*.js': ['coverage'],
-            'app/plugins/**/*.js': ['coverage']
+            'app/plugins/**/*.js': ['coverage'],
+
+            'app/modules/**/*.html': ['ng-html2js']
         },
 
         // optionally, configure the reporter
@@ -79,6 +84,12 @@ module.exports = function (config, extensions, options) {
             reporters: [
                 { type: 'lcov', subdir: 'lcov' }
             ]
+        },
+
+        ngHtml2JsPreprocessor: {
+            stripPrefix: 'app/',
+
+            moduleName: 'handlio.client.templateCache'
         },
 
         // test results reporter to use
