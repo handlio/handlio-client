@@ -81,7 +81,7 @@ test("'Toggle action' directive ", function (assert) { // eslint-disable-line ma
     angular.mock.module('handlio.client.components');
 
     var _$compile, _$rootScope;
-    inject(['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
+    inject(['$compile', '$rootScope', '$timeout', function ($compile, $rootScope) {
         _$compile = $compile;
         _$rootScope = $rootScope;
     }]);
