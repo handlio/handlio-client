@@ -1,20 +1,15 @@
 var tape = require('tape');
 var sinon = require('sinon');
-var fs = require('fs');
-// require();
 
 var test = tape.angular.wrap();
 
 test("'configurator' directive ", function (assert) {
 
-    // var configuratorTemplate = fs.readFileSync('../../../app/modules/configurator/configurator.html', );
-
     angular.mock.module('handlio.client.configurator');
     angular.mock.module('handlio.client.templateCache');
 
-    inject(['$compile', '$rootScope', '$templateCache', function ($compile, $rootScope, $templateCache) {
+    inject(['$compile', '$rootScope', function ($compile, $rootScope) {
 
-        // $httpBackend.expect('GET', 'modules/configurator/configurator.html');
         assert.doesNotThrow(function () {
             var compiled = _compileElement('<div configurator></div>', $rootScope.$new());
 
