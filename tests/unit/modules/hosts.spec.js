@@ -5,39 +5,78 @@ var test = tape.angular.wrap();
 
 test("'hosts' directive ", function (assert) {
 
+    var hostStoreMock = {
+        get: _spy(), set: _spy(), remove: _spy(),
+        reset: _reset(['get', 'set', 'remove'])
+    };
+    var hostStateMock = { change: _spy(), get: _spy(), reset: _reset(['get', 'change']) };
+
     angular.mock.module('handlio.client.hosts');
     angular.mock.module('handlio.client.templateCache');
+    angular.mock.module(function ($provide) {
+        $provide.value('HostStore', hostStoreMock);
+        $provide.value('HostState', hostStateMock);
+    });
 
-    inject(['$compile', '$rootScope', '$controller', function ($compile, $rootScope, $controller) {
+    var _$compile, _$rootScope, _$controller;
 
-        assert.doesNotThrow(function () {
-            var compiled = _compileElement('<div hosts></div>', $rootScope.$new());
+    inject(function ($compile, $rootScope, $controller) {
+        _$compile = $compile;
+        _$rootScope = $rootScope;
+        _$controller = $controller;
+    });
 
-            assert.true(compiled.hasClass('ng-scope'), "has ng-scope class");
-            assert.equal(compiled.find('form').length, 1, "has hosts form inside");
-        }, "should compile 'hosts' directive successfully");
+    assert.doesNotThrow(function () {
+        var compiled = _compileElement('<div hosts></div>', _$rootScope.$new());
 
-        var scope = $rootScope.$new();
-        var ctrl = $controller('HostsController', {
-            $scope : scope
-        });
+        assert.true(compiled.hasClass('ng-scope'), "has ng-scope class");
+        assert.equal(compiled.find('form').length, 1, "has hosts form inside");
+    }, "should compile 'hosts' directive successfully");
 
-        assert.ok(ctrl.addHost, "method 'addHost' exist in controller");
-        assert.ok(ctrl.list, "object 'list' exist in controller");
-        assert.ok(ctrl.model, "object 'model' exist in controller");
-        assert.ok(ctrl.new, "object 'new' exist in controller");
-        assert.ok(ctrl.removeHost, "method 'removeHost' exist in controller");
-        assert.ok(ctrl.saveSelected, "method 'saveSelected' exist in controller");
+    var scope = _$rootScope.$new();
+    var ctrl = _$controller('HostsController', {
+        $scope: scope
+    });
 
-        function _compileElement(html, scope) {
-            var element = angular.element(html);
-            var compiledElement = $compile(element)(scope);
-            scope.$digest();
-            return compiledElement;
-        }
+    assert.ok(ctrl.addHost, "method 'addHost' exist in controller");
+    assert.ok(ctrl.list, "object 'list' exist in controller");
+    assert.ok(ctrl.model, "object 'model' exist in controller");
+    assert.ok(ctrl.new, "object 'new' exist in controller");
+    assert.ok(ctrl.removeHost, "method 'removeHost' exist in controller");
+    assert.ok(ctrl.saveSelected, "method 'saveSelected' exist in controller");
 
-    }]);
+    assert.throws(function () {
+        ctrl.addHost(null);
+    }, "should throws when host is null or undefined");
+
+    assert.doesNotThrow(function () {
+        ctrl.addHost({ name: 'name', url: 'http://1.1.1.1' });
+        assert.true(hostStoreMock.set.calledTwice, "should call 'HostStore.set' method twice inside");
+        assert.true(hostStateMock.change.calledOnce, "should call 'HostState.change' method once inside");
+        hostStoreMock.reset();
+        hostStateMock.reset();
+    }, "should add host successfully");
+
+    function _compileElement(html, scope) {
+        var element = angular.element(html);
+        var compiledElement = _$compile(element)(scope);
+        scope.$digest();
+        return compiledElement;
+    }
 
     assert.end();
 
 });
+
+function _spy() {
+    return sinon.spy();
+}
+
+function _reset(methods) {
+    return function () {
+        var instance = this;
+        methods.forEach(function (method) {
+            instance[method].reset();
+        });
+    };
+}
