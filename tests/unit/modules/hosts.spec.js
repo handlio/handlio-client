@@ -3,7 +3,7 @@ var sinon = require('sinon');
 
 var test = tape.angular.wrap();
 
-test("'hosts' directive ", function (assert) {
+test("'hosts' directive - without storage data", function (assert) {
 
     var hostStoreMock = {
         get: _spy(), set: _spy(), remove: _spy(),
@@ -49,9 +49,44 @@ test("'hosts' directive ", function (assert) {
         ctrl.addHost(null);
     }, "should throws when host is null or undefined");
 
+    var testHost = { name: 'name', url: 'http://1.1.1.1' };
+
     assert.doesNotThrow(function () {
-        ctrl.addHost({ name: 'name', url: 'http://1.1.1.1' });
+        ctrl.addHost(testHost);
+        assert.equal(ctrl.list.length, 1, "should contains only one host");
         assert.true(hostStoreMock.set.calledTwice, "should call 'HostStore.set' method twice inside");
+        assert.true(hostStateMock.change.calledOnce, "should call 'HostState.change' method once inside");
+        hostStoreMock.reset();
+        hostStateMock.reset();
+    }, "should add host successfully");
+
+    assert.doesNotThrow(function () {
+        ctrl.removeHost(testHost, 0);
+        assert.equal(ctrl.list.length, 0, "should contains no hosts");
+        assert.equal(ctrl.model.selected, null, "should not has selected host");
+        assert.true(hostStoreMock.set.calledOnce, "should call 'HostStore.set' method once inside");
+        assert.true(hostStoreMock.remove.calledOnce, "should call 'HostStore.remove' method once inside");
+        assert.true(hostStateMock.change.calledOnce, "should call 'HostState.change' method once inside");
+        hostStoreMock.reset();
+        hostStateMock.reset();
+    }, "should remove host successfully");
+
+    var get = sinon.stub();
+    get.withArgs('list').returns([testHost]);
+    get.withArgs('selected').returns(testHost);
+    hostStoreMock.get = get;
+
+    scope = _$rootScope.$new();
+    ctrl = _$controller('HostsController', {
+        $scope: scope
+    });
+
+    assert.doesNotThrow(function () {
+        // ctrl.addHost(testHost);
+        assert.equal(ctrl.list.length, 1, "should contains only one host");
+        assert.deepEqual(ctrl.list[0], testHost, "should contains testHost");
+        assert.deepEqual(ctrl.model.selected, testHost, "selected host should be the testHost");
+        assert.true(hostStoreMock.get.calledTwice, "should call 'HostStore.get' method twice inside");
         assert.true(hostStateMock.change.calledOnce, "should call 'HostState.change' method once inside");
         hostStoreMock.reset();
         hostStateMock.reset();
