@@ -33,10 +33,7 @@ test("'hosts' directive", function (assert) {
         assert.equal(compiled.find('form').length, 1, "has hosts form inside");
     }, "should compile 'hosts' directive successfully");
 
-    var scope = _$rootScope.$new();
-    var ctrl = _$controller('HostsController', {
-        $scope: scope
-    });
+    var ctrl = _$controller('HostsController');
 
     assert.ok(ctrl.addHost, "method 'addHost' exist in controller");
     assert.ok(ctrl.list, "object 'list' exist in controller");
@@ -76,10 +73,7 @@ test("'hosts' directive", function (assert) {
     get.withArgs('selected').returns(testHost);
     hostStoreMock.get = get;
 
-    scope = _$rootScope.$new();
-    ctrl = _$controller('HostsController', {
-        $scope: scope
-    });
+    ctrl = _$controller('HostsController');
 
     assert.doesNotThrow(function () {
         assert.equal(ctrl.list.length, 1, "should contains only one host");
