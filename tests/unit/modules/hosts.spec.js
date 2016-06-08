@@ -82,7 +82,6 @@ test("'hosts' directive - without storage data", function (assert) {
     });
 
     assert.doesNotThrow(function () {
-        // ctrl.addHost(testHost);
         assert.equal(ctrl.list.length, 1, "should contains only one host");
         assert.deepEqual(ctrl.list[0], testHost, "should contains testHost");
         assert.deepEqual(ctrl.model.selected, testHost, "selected host should be the testHost");
