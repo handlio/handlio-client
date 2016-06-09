@@ -75,7 +75,7 @@ module.exports = function (config, extensions, options) {
             'app/modules/**/*.js': ['coverage'],
             'app/plugins/**/*.js': ['coverage'],
 
-            'app/modules/**/*.html': ['ng-html2js']
+            'app/**/*.html': ['ng-html2js']
         },
 
         // optionally, configure the reporter
