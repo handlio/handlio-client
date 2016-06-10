@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('handlio.client.command-sender', [
-        'handlio.client.core'
+        'handlio.client.core',
+        'angular-storage'
     ]);
     
 })(angular);

@@ -14,22 +14,22 @@
             link: _link
         };
 
-        function _link(scope, elm) {
+        function _link(scope, element) {
             if (!scope.toggleAction)
                 throw new Error("Callback and value were not provided.");
 
-            if (!scope.toggleAction.fn)
+            if (typeof scope.toggleAction.fn !== 'function')
                 throw new Error("Callback was not provided.");
 
             var toggleInitialValue = scope.toggleAction.value;
             if (typeof toggleInitialValue !== 'boolean')
                 throw new Error("Value was not provided.");
-            
-            $(elm).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
 
-            $(elm).change(function () {
+            $(element).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
+
+            $(element).change(function () {
                 $timeout(function () {
-                    scope.toggleAction.fn($(elm).prop('checked'));
+                    scope.toggleAction.fn(angular.element(element).prop('checked'));
                 }, 0);
             });
         }
