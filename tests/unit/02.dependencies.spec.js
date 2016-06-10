@@ -35,7 +35,9 @@ test("Modules dependencies: ", function (assert) {
 
     var commandSenderModule = angular.module('handlio.client.command-sender');
     assert.ok(commandSenderModule, 'commandSenderModule');
-    assert.deepEqual(commandSenderModule.requires, ['handlio.client.core'], 'commandSenderModule dependencies');
+    assert.deepEqual(commandSenderModule.requires, [
+        'handlio.client.core', 'angular-storage'
+    ], 'commandSenderModule dependencies');
 
     var hostsModule = angular.module('handlio.client.hosts');
     assert.ok(hostsModule, 'hostsModule');
