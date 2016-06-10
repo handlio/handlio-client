@@ -43,7 +43,7 @@ module.exports = function (config, extensions, options) {
             'app/modules/**/*.js',
             'app/plugins/**/*.js',
 
-            'app/modules/**/*.html',
+            'app/**/*.html',
 
             'tests/unit/**/*.js'
         ],
