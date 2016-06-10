@@ -13,13 +13,13 @@ tape.angular = {
 // private functions
 
 function _beforeEach(assert) {
+    assert.ok(tape.angular.beforeEach, 'Angular-mocks preparation');
     tape.angular.beforeEach();
-    console.log('Angular-mocks preparation');
     assert.end();
 }
 
 function _afterEach(assert) {
+    assert.ok(tape.angular.afterEach, 'Angular-mocks cleanup');
     tape.angular.afterEach();
-    console.log('Angular-mocks cleanup');
     assert.end();
 }
