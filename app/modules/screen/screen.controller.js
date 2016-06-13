@@ -18,7 +18,7 @@
             if (vm.panels.hasOwnProperty(panelName)) {
                 var panelDefinition = vm.panels[panelName];
                 var state = store.get(panelDefinition.storeKey);
-                panelDefinition.visible = !state ? false : state === VisibilityState.shown;
+                panelDefinition.visible = (!state || state === VisibilityState.hidden) ? false : state === VisibilityState.shown;
             }
         }
 

@@ -14,7 +14,7 @@
     </div>
 
     <!-- Configuration block -->
-    <div configurator ng-show="!screen.panels.configurator.visible"></div>
+    <div configurator ng-show="screen.panels.configurator.visible"></div>
 
     <div ng-repeat="plugin in screen.plugins">
         <a class="btn" ui-sref="plugin({ plugin: plugin.name })">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
@@ -22,7 +22,7 @@
 
     <div ui-view></div>
 
-    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="!screen.panels.commandSender.visible">
+    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="screen.panels.commandSender.visible">
         <div command-sender></div>
     </footer>
 </div>
