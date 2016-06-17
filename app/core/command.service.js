@@ -27,7 +27,7 @@
             return $http.post(url, { keys: keys, window: windowName }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);
             }, function (err) {
-                notification.error('Failed: ' + err, 'Server Error');
+                notification.error('Failed: ' + (err.status < 0 ? "Connection refused" : err.statusText), 'Server Error');
             });
         }
     }
