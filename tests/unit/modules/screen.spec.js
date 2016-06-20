@@ -105,7 +105,6 @@ test("Screen Controller", function (assert) {
 
         assert.equal(ctrl.plugins.length, 1, "plugins should contains one plugin");
         assert.equal(ctrl.plugins[0].name, 'player', "plugins should contains 'player' plugin");
-        assert.equal(ctrl.plugins[0].directive, 'player', "'player' plugin should has directive property is equaled to 'player'");
 
         assert.ok(ctrl.panels['configurator'], "screen should has 'configurator' panel");
         assert.ok(ctrl.panels['commandSender'], "screen should has 'commandSender' panel");

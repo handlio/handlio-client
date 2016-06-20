@@ -11,7 +11,7 @@
     function _config(PluginTrackerProvider) {
         PluginTrackerProvider.add({
             name: 'player',
-            directive: 'player',
+            directive: '<div player class="container-fluid"></div>',
             button: {
                 text: 'player'
             }
