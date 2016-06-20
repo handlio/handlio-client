@@ -9,13 +9,13 @@ html, body {
     font-kerning: normal;
 }
 
-html, body, div[ui-view], .container {
+html, body, div[ui-view], .container, .container-fluid {
     width: 100%;
     height: 100%;
     padding: 0;
 }
 
-div[ui-view], .container {
+div[ui-view], .container, .container-fluid {
     top: auto;
     bottom: auto;
 }
