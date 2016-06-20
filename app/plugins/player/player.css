@@ -35,6 +35,9 @@ div[player] {
 }
 
 button.escape {
-    margin: 10px 0;
     float: right;
+}
+
+.command-btn {
+    margin: 10px 0;
 }
