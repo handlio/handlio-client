@@ -1,20 +1,13 @@
 <div class="container-fluid">
-    <div class="row block">
-        <input type="checkbox"
-               data-toggle="toggle" title="Show/Hide configurator"
-               data-off="Hide" data-on="Configure"
-               data-offstyle="warning" data-onstyle="default" data-style="pull-right"
-               toggle-action="{ fn: screen.toggleConfig, value: !screen.panels.configurator.visible }">
+    <header class="navbar navbar-default navbar-fixed-top collapsible"
+            ng-class="{ active: screen.panels.configurator.visible }">
+        <div class="nav" configurator></div>
 
-        <input type="checkbox"
-               data-toggle="toggle" title="Show/Hide command sender"
-               data-off="Command" data-on="Command"
-               data-offstyle="warning" data-onstyle="default" data-style="pull-right"
-               toggle-action="{ fn: screen.toggleCommandSender, value: !screen.panels.commandSender.visible }">
-    </div>
-
-    <!-- Configuration block -->
-    <div configurator ng-show="screen.panels.configurator.visible"></div>
+        <button class="collapsing-handler down"
+                ng-click="screen.toggleConfig(screen.panels.configurator.visible)">
+            Configure
+        </button>
+    </header>
 
     <div ng-repeat="plugin in screen.plugins">
         <a class="btn" ui-sref="plugin({ plugin: plugin.name })">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
@@ -22,7 +15,13 @@
 
     <div ui-view></div>
 
-    <footer class="navbar navbar-default navbar-fixed-bottom" ng-show="screen.panels.commandSender.visible">
-        <div command-sender></div>
+    <footer class="navbar navbar-default navbar-fixed-bottom collapsible"
+            ng-class="{ active: screen.panels.commandSender.visible }">
+
+        <button class="collapsing-handler up"
+                ng-click="screen.toggleCommandSender(screen.panels.commandSender.visible)">
+            Command
+        </button>
+        <div command-sender class="nav"></div>
     </footer>
 </div>

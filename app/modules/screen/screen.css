@@ -13,3 +13,51 @@ div[dynamic-view] {
     top: auto;
     bottom: auto;
 }
+
+.collapsible {
+    position: fixed;
+    min-height: 0;
+}
+
+.collapsible .nav {
+    overflow: hidden;
+    height: 0;
+}
+
+.collapsible.active .nav {
+    height: 100%;
+}
+
+.collapsible button.collapsing-handler {
+    position: absolute;
+    right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    background-color: #50a652;
+    font: 400 1.2em 'Allan', serif;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    line-height: 30px;
+    vertical-align: middle;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+}
+
+.collapsible button.collapsing-handler.up {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: -36px;
+}
+
+.collapsible button.collapsing-handler.down {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.collapsible.active button.collapsing-handler {
+    background-color: #256f6f;
+}

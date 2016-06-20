@@ -34,3 +34,9 @@ button.escape {
 .command-btn {
     margin: 10px 0;
 }
+
+.command-row {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 25%;
+}
