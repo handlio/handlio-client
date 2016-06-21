@@ -13,7 +13,10 @@
         <a class="btn" ui-sref="plugin({ plugin: plugin.name })">{{ plugin.button ? plugin.button.text : plugin.name }}</a>
     </div>
 
-    <div ui-view></div>
+    <div ui-view class="plugin-view"
+         ng-class="{
+            inactive:
+                screen.panels.configurator.visible || screen.panels.commandSender.visible }"></div>
 
     <footer class="navbar navbar-default navbar-fixed-bottom collapsible"
             ng-class="{ active: screen.panels.commandSender.visible }">

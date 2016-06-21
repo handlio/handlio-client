@@ -50,7 +50,16 @@ div[dynamic-view] {
 .collapsible button.collapsing-handler.up {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    position: fixed;
+    margin-top: -35px;
+}
+
+.collapsible.active button.collapsing-handler.up {
     margin-top: -36px;
+}
+
+.collapsible.active button.collapsing-handler.down {
+    margin-top: 1px;
 }
 
 .collapsible button.collapsing-handler.down {
@@ -60,4 +69,29 @@ div[dynamic-view] {
 
 .collapsible.active button.collapsing-handler {
     background-color: #256f6f;
+}
+
+[ui-view].plugin-view, [ui-view].plugin-view:after {
+    opacity: 1;
+}
+
+[ui-view].plugin-view.inactive {
+    /*position: relative;*/
+    transition: opacity 2s ease;
+    -webkit-transition: opacity 2s ease;
+    -moz-transition: opacity 2s ease;
+}
+
+[ui-view].plugin-view.inactive:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+    transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
 }
