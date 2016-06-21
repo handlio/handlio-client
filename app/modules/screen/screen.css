@@ -20,11 +20,13 @@ div[dynamic-view] {
 }
 
 .collapsible .nav {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     height: 0;
 }
 
 .collapsible.active .nav {
+    margin: 5px;
     height: 100%;
 }
 
@@ -34,7 +36,7 @@ div[dynamic-view] {
     padding-left: 10px;
     padding-right: 10px;
     height: 35px;
-    background-color: #50a652;
+    background-color: #1ca68c;
     font: 400 1.2em 'Allan', serif;
     text-transform: uppercase;
     color: #fff;
