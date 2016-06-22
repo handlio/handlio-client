@@ -26,6 +26,7 @@ ul.host-list:last-child li.host label {
 .remove-btn {
     background-color: #a64421;
     border-color: transparent;
+    padding-left: 6px;
 }
 
 .add-host {
