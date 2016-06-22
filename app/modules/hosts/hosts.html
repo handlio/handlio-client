@@ -20,8 +20,8 @@
                ng-model="hosts.new.url" unique="{list: hosts.list, key: 'url'}" required>
     </div>
     <div class="col col-xs-1">
-        <input type="submit" class="add-host" value=""
-               ng-click="hosts.addHost(hosts.new)" ng-disabled="userForm.$invalid">
+        <button class="add-host" ng-click="hosts.addHost(hosts.new)"
+                ng-disabled="userForm.$invalid"></button>
     </div>
 </form>
 
