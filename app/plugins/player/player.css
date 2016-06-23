@@ -69,3 +69,45 @@
 .row.sticky-bottom > .command-row .command-btn.bottom-shift {
     margin-bottom: 25px;
 }
+
+.command-btn.btn-danger {
+    background: #e43a15; /* fallback for old browsers */
+    background: -webkit-linear-gradient(#e43a15, #e6773c); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#e43a15, #e6773c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-enter {
+    background: #FF512F; /* fallback for old browsers */
+    background: -webkit-linear-gradient(#FF512F, #F09819); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#FF512F, #F09819); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-right {
+    background: #136a8a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #136a8a, #267871); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #136a8a, #267871); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-left {
+    background: #136a8a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #136a8a, #267871); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #136a8a, #267871); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-space {
+    background: #267871; /* fallback for old browsers */
+    background: -webkit-linear-gradient(#267871, #136a8a); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#267871, #136a8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-up {
+    background: #267871; /* fallback for old browsers */
+    background: -webkit-linear-gradient(#267871, #136a8a); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#267871, #136a8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.command-btn.btn-down {
+    background: #136a8a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(#136a8a, #267871); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#136a8a, #267871); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
