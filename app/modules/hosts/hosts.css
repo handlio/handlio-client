@@ -1,0 +1,102 @@
+form[name="userForm"] {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form[name="userForm"] .col {
+    padding: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+ul.host-list {
+    margin: 0 -20px;
+}
+
+ul.host-list li.host label {
+    margin-bottom: 0;
+    height: 35px;
+    margin-top: 0;
+}
+
+ul.host-list:last-child li.host label {
+    margin-bottom: 5px;
+}
+
+.remove-btn {
+    background-color: #a64421;
+    border-color: transparent;
+    padding-left: 6px;
+}
+
+.add-host {
+    background: url('data:image/png;base64,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') no-repeat center center;
+    border: none;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    margin-left: 5px;
+}
+
+.add-host:disabled {
+    opacity: 0.6;
+}
+
+/* hide input */
+input.radio-check:empty {
+    margin-left: -999px;
+}
+
+/* style label */
+input.radio-check:empty ~ label {
+    position: relative;
+    float: left;
+    line-height: 2.5em;
+    text-indent: 3.25em;
+    margin-top: 1em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input.radio-check:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 2.5em;
+    background: #D1D3D4;
+    border-radius: 3px 0 0 3px;
+}
+
+/* toggle hover */
+input.radio-check:hover:not(:checked) ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #C2C2C2;
+}
+
+input.radio-check:hover:not(:checked) ~ label {
+    color: #888;
+}
+
+/* toggle on */
+input.radio-check:checked ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #9CE2AE;
+    background-color: #256f6f;
+}
+
+input.radio-check:checked ~ label {
+    color: #777;
+}
+
+/* radio focus */
+input.radio-check:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+}

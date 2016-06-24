@@ -1,19 +1,29 @@
-<form name="senderForm" novalidate class="navbar-form navbar-left command-sender">
+<form name="senderForm" novalidate class="command-sender">
     <div class="form-group">
-        <div class="col-xs-5"
-             ng-class="{ 'has-error': senderForm.keys.$dirty && senderForm.keys.$invalid }">
+        <div class="col col-xs-6"
+             ng-class="{
+                'has-error':
+                    senderForm.keys.$dirty
+                    && senderForm.keys.$invalid
+                    && !senderForm.keys.$isEmpty(senderForm.keys.$viewValue)  }">
             <input name="keys" type="text" class="form-control" title="Keys"
                    ng-model="commandSender.command.keys" required placeholder="Command">
         </div>
-        <div class="col-xs-4"
-             ng-class="{ 'has-error': senderForm.windowName.$dirty && senderForm.windowName.$invalid }">
+
+        <div class="col col-xs-4"
+             ng-class="{
+                'has-error':
+                    senderForm.windowName.$dirty
+                        && senderForm.windowName.$invalid
+                        && !senderForm.windowName.$isEmpty(senderForm.windowName.$viewValue)  }">
             <input name="windowName" type="text" class="form-control" title="Window name"
                    ng-model="commandSender.command.window" required placeholder="Window name"
                    ng-change="commandSender.saveWindow(commandSender.command.window);">
         </div>
+        <div class="col col-xs-1">
+            <button class="send-btn"
+                    ng-click="$root.commands.send(commandSender.command.keys, commandSender.command.window)"
+                    ng-disabled="senderForm.$invalid"></button>
+        </div>
     </div>
-    <button type="submit" class="btn btn-warning" style="margin-right: 5px;"
-            ng-click="$root.commands.send(commandSender.command.keys, commandSender.command.window)"
-            ng-disabled="senderForm.$invalid">Send
-    </button>
 </form>

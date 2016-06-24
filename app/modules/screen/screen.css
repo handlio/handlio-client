@@ -6,3 +6,98 @@
     margin-bottom: 0;
     margin-top: 0;
 }
+
+div[dynamic-view] {
+    width: 100%;
+    height: 100%;
+    top: auto;
+    bottom: auto;
+}
+
+.collapsible {
+    position: fixed;
+    min-height: 0;
+}
+
+.navbar.collapsible {
+    border: 0;
+}
+
+.collapsible .nav {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 0;
+}
+
+.collapsible.active .nav {
+    margin: 5px;
+    height: 100%;
+}
+
+.collapsible button.collapsing-handler {
+    position: absolute;
+    right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    background-color: #1ca68c;
+    font: 400 1.2em 'Allan', serif;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    line-height: 30px;
+    vertical-align: middle;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+}
+
+.collapsible button.collapsing-handler.up {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: fixed;
+    margin-top: -35px;
+}
+
+/*.collapsible.active button.collapsing-handler.up {*/
+/*margin-top: -36px;*/
+/*}*/
+
+/*.collapsible.active button.collapsing-handler.down {*/
+/*margin-top: 1px;*/
+/*}*/
+
+.collapsible button.collapsing-handler.down {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.collapsible.active button.collapsing-handler {
+    background-color: #256f6f;
+}
+
+[ui-view].plugin-view, [ui-view].plugin-view:after {
+    opacity: 1;
+}
+
+[ui-view].plugin-view.inactive {
+    /*position: relative;*/
+    transition: opacity 2s ease;
+    -webkit-transition: opacity 2s ease;
+    -moz-transition: opacity 2s ease;
+}
+
+[ui-view].plugin-view.inactive:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+    transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+}

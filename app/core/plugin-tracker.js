@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.core');
 
-    _provider.$inject = [];
+    _provider.$inject = ['_'];
     module.provider('PluginTracker', _provider);
 
-    function _provider() {
+    function _provider(_) {
 
         // initialization
 
@@ -29,6 +29,9 @@
             return {
                 getPlugins: function () {
                     return plugins;
+                },
+                getPlugin: function (name) {
+                    return _.find(plugins, { name: name });
                 }
             };
         }
