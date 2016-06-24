@@ -12,9 +12,7 @@
         PluginTrackerProvider.add({
             name: 'player',
             directive: '<div player class="container-fluid"></div>',
-            button: {
-                text: 'player'
-            }
+            button: { text: 'player' }
         });
     }
 

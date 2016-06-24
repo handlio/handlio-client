@@ -19,6 +19,10 @@ div[dynamic-view] {
     min-height: 0;
 }
 
+.navbar.collapsible {
+    border: 0;
+}
+
 .collapsible .nav {
     overflow-x: hidden;
     overflow-y: auto;
@@ -56,13 +60,13 @@ div[dynamic-view] {
     margin-top: -35px;
 }
 
-.collapsible.active button.collapsing-handler.up {
-    margin-top: -36px;
-}
+/*.collapsible.active button.collapsing-handler.up {*/
+/*margin-top: -36px;*/
+/*}*/
 
-.collapsible.active button.collapsing-handler.down {
-    margin-top: 1px;
-}
+/*.collapsible.active button.collapsing-handler.down {*/
+/*margin-top: 1px;*/
+/*}*/
 
 .collapsible button.collapsing-handler.down {
     border-bottom-left-radius: 10px;
