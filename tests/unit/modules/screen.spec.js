@@ -110,6 +110,7 @@ test("Screen Controller", function (assert) {
         assert.ok(ctrl.panels['commandSender'], "screen should has 'commandSender' panel");
 
         assert.true(storeMock.get.calledTwice, "screen should initiate two 'store.get' calls");
+        assert.true(ctrl.pluginView.active(), "plugin view on the screen should be in active state");
 
         ctrl.toggleConfig(true);
 
@@ -125,6 +126,8 @@ test("Screen Controller", function (assert) {
         ctrl.toggleCommandSender(false);
         assert.true(ctrl.panels['commandSender'].visible, "screen should has visible 'commandSender' panel");
         assert.true(storeMock.set.calledOnce, "screen.toggleCommandSender with false should initiate one 'store.set' call");
+
+        assert.false(ctrl.pluginView.active(), "plugin view on the screen should be inactive");
         storeMock.set.reset();
 
     }, "should successfully create ScreenController instance");
@@ -137,6 +140,13 @@ test("Screen Controller", function (assert) {
         var ctrl = _$controller('ScreenController');
 
         assert.true(ctrl.panels['configurator'].visible, "screen should has visible 'configurator' panel");
+        assert.false(ctrl.panels['commandSender'].visible, "screen should has hidden 'commandSender' panel");
+        assert.false(ctrl.pluginView.active(), "plugin view on the screen should be inactive");
+
+        ctrl.pluginView.makeActive();
+
+        assert.true(ctrl.pluginView.active(), "plugin view on the screen should be active now");
+        assert.false(ctrl.panels['configurator'].visible, "screen should has hidden 'configurator' panel");
         assert.false(ctrl.panels['commandSender'].visible, "screen should has hidden 'commandSender' panel");
 
     }, "should successfully create ScreenController instance with stored configuration");

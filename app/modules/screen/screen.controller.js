@@ -44,8 +44,8 @@
         }
 
         function _makeActive() {
-            _.forEach(vm.panels, function (panel) {
-                panel.visible = false;
+            _.forEach(vm.panels, function (panel, key) {
+                _toggleVisibility(key, true);
             });
         }
     }
