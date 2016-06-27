@@ -29,7 +29,7 @@ test("command-sender module", function (assert) {
 
         assert.equal($(compiledElement).find('form[name="senderForm"]').length, 1, "should has 'senderForm' inside");
 
-        var directiveScope = compiledElement.scope();
+        var directiveScope = compiledElement.isolateScope();
 
         assert.ok(directiveScope, "directive element should has scope");
         assert.ok(directiveScope.senderForm, "directive element scope should contains 'senderForm' form controller inside");
