@@ -8,6 +8,7 @@
 
     function _directive() {
         return {
+            scope: {},
             templateUrl: 'modules/command-sender/command-sender.html',
             controller: 'CommandSenderController as commandSender'
         };
