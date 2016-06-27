@@ -2,7 +2,8 @@
     'use strict';
 
     var module = angular.module('handlio.client.plugins.player', [
-        'handlio.client.core'
+        'handlio.client.core',
+        'swipe'
     ]);
 
     _config.$inject = ['PluginTrackerProvider'];

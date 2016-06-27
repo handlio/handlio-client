@@ -12,6 +12,9 @@
         this.send = _send;
 
         function _send(keys, windowName) {
+
+            $log.debug('send command: ' + keys);
+
             var selectedHost = HostState.get();
 
             if (!selectedHost) {
