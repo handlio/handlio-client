@@ -6,6 +6,9 @@
     _config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
     module.config(_config);
 
+    _run.$inject = ['$rootScope', '$state'];
+    module.run(_run);
+
     function _config($stateProvider, $locationProvider, $urlRouterProvider) {
         $stateProvider.state('index', {
             url: '',
@@ -26,6 +29,10 @@
         $urlRouterProvider.otherwise('/');
 
         $locationProvider.html5Mode(true);
+    }
+
+    function _run($rootScope, $state) {
+        $rootScope.$state = $state;
     }
 
 })(angular);
