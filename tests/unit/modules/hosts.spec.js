@@ -3,7 +3,7 @@ var sinon = require('sinon');
 
 var test = tape.angular.wrap();
 
-test("'hosts' directive", function (assert) {
+test("'hosts' directive", function (assert) { // eslint-disable-line max-statements
 
     var hostStoreMock = {
         get: _spy(), set: _spy(), remove: _spy(),
@@ -84,6 +84,35 @@ test("'hosts' directive", function (assert) {
         hostStoreMock.reset();
         hostStateMock.reset();
     }, "should add host successfully");
+
+    get = sinon.stub();
+    var test1 = { name: '1', url: '1' };
+    var test2 = { name: '2', url: '2' };
+
+    get.withArgs('list').returns([testHost, test1, test2]);
+    get.withArgs('selected').returns(testHost);
+    hostStoreMock.get = get;
+
+    ctrl = _$controller('HostsController');
+
+    assert.doesNotThrow(function () {
+        assert.equal(ctrl.list.length, 3, "should contains three host");
+        assert.deepEqual(ctrl.list[0], testHost, "should contains testHost");
+        assert.deepEqual(ctrl.model.selected, testHost, "selected host should be the testHost");
+        assert.true(hostStoreMock.get.calledTwice, "should call 'HostStore.get' method twice inside");
+        assert.true(hostStateMock.change.calledOnce, "should call 'HostState.change' method once inside");
+
+        hostStoreMock.reset();
+        hostStateMock.reset();
+
+        ctrl.removeHost(test1, 1);
+        assert.deepEqual(ctrl.model.selected, testHost, "selected host was not changed");
+        ctrl.addHost(test1);
+        assert.deepEqual(ctrl.model.selected, test1, "selected host was changed to 'test1'");
+        ctrl.removeHost(test1, 2);
+        assert.deepEqual(ctrl.model.selected, testHost, "selected host was changed and equals to 'testHost' again");
+
+    }, "add-remove functionality");
 
     function _compileElement(html, scope) {
         var element = angular.element(html);

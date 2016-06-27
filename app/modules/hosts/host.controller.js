@@ -58,10 +58,13 @@
         }
 
         function _removeHost(host, index) {
+            var shouldResetSelected = vm.list.indexOf(vm.model.selected) === index;
             vm.list.splice(index, 1);
             HostStore.set('list', vm.list);
 
-            _setSelected(vm.list[0] || null);
+            if (shouldResetSelected) {
+                _setSelected(vm.list[0] || null);
+            }
 
             $log.info("Host was removed - ", host.url + ", " + host.name);
         }
