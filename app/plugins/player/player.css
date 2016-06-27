@@ -2,22 +2,18 @@
  Buttons
 */
 
-.btn-ellipse {
-    height: 30px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-}
-
-.btn-ellipse.btn-xl {
+.command-btn.btn-xl {
     width: 100%;
     height: 55px;
 }
 
 .command-btn {
     margin: 10px 0;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
 }
 
 .command-row.bottom-commands {
@@ -33,7 +29,7 @@
     padding-right: 0;
 }
 
-.bottom-commands.command-row .col button.btn-ellipse {
+.bottom-commands.command-row .col button.btn-cmd {
     width: 100%;
 }
 
