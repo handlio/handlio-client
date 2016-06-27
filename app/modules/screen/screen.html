@@ -15,7 +15,8 @@
 
     <div ui-view class="plugin-view"
          ng-class="{ inactive: !screen.pluginView.active() }"
-         ng-click="screen.pluginView.makeActive()"></div>
+         ng-click="screen.pluginView.makeActive()"
+         ng-if="$root.$state.params.plugin"></div>
 
     <footer class="navbar navbar-default navbar-fixed-bottom collapsible"
             ng-class="{ active: screen.panels.commandSender.visible }">
