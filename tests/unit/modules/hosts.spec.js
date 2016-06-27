@@ -3,7 +3,7 @@ var sinon = require('sinon');
 
 var test = tape.angular.wrap();
 
-test("'hosts' directive", function (assert) {
+test("'hosts' directive", function (assert) { // eslint-disable-line max-statements
 
     var hostStoreMock = {
         get: _spy(), set: _spy(), remove: _spy(),
