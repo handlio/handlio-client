@@ -29,6 +29,6 @@
     "predev": "npm install && bower install && npm i gulp -g",
     "dev": "gulp livereload",
     "pretest": "npm install && bower install && npm i gulp -g",
-    "test": "gulp test"
+    "test": "gulp karma-ci"
   }
 }
