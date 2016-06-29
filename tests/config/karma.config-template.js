@@ -24,6 +24,7 @@ module.exports = function (config, extensions, options) {
             'app/bower_components/a0-angular-storage/dist/angular-storage.js',
             'app/bower_components/toastr/toastr.js',
             'app/bower_components/lodash/dist/lodash.js',
+            'app/bower_components/angular-swipe/dist/angular-swipe.js',
 
             'tests/mocks/**/*.js',
 
