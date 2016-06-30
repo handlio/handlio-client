@@ -1,5 +1,6 @@
 <div class="layout" style="height: 100%; width: 100%;"
-     ng-swipe-up="up()">
-     <!--ng-swipe-down="$root.commands.send('down')">-->
-
+     ng-swipe-down="moveVertically(30)"
+     ng-swipe-up="moveVertically(-30)"
+     ng-swipe-left="moveHorizontally(-30)"
+     ng-swipe-right="moveHorizontally(30)">
 </div>

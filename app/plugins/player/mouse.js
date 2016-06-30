@@ -7,19 +7,29 @@
     module.directive('mouse', _directive);
 
     function _directive(CommandService) {
+
+        var options = { delay: 200 };
+
         return {
             templateUrl: 'plugins/player/mouse.html',
             link: _link
         };
 
         function _link(scope) {
-            scope.up = _wrap(function (calls) {
-                CommandService.mouse.move('vertical', 10, calls);
-            });
+            scope.moveVertically = _makeDelayedExecution(_moveVertically);
+            scope.moveHorizontally = _makeDelayedExecution(_moveHorizontally);
+        }
 
-            function _wrap(fn) {
-                return _debounce(fn, 1000);
-            }
+        function _makeDelayedExecution(fn) {
+            return _debounce(fn, options.delay);
+        }
+
+        function _moveVertically(calls, step) {
+            CommandService.mouse.move('vertical', step, calls);
+        }
+
+        function _moveHorizontally(calls, step) {
+            CommandService.mouse.move('horizontal', step, calls);
         }
 
         function _debounce(fn, delay) {
