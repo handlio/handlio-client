@@ -3,10 +3,10 @@
 
     var module = angular.module('handlio.client.plugins.player');
 
-    _directive.$inject = ['_', 'CommandService'];
+    _directive.$inject = ['CommandService'];
     module.directive('mouse', _directive);
 
-    function _directive(_, CommandService) {
+    function _directive(CommandService) {
         return {
             templateUrl: 'plugins/player/mouse.html',
             link: _link
@@ -34,8 +34,8 @@
                 _run.calls++;
                 timer = setTimeout(function () {
                     var contextArgs = [_run.calls];
-                    contextArgs.push.apply(contextArgs.push, args);
-                    fn.call(context, contextArgs);
+                    Array.prototype.push.apply(contextArgs, args);
+                    fn.apply(context, contextArgs);
                     _run.calls = 0;
                 }, delay);
             }
