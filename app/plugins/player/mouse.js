@@ -11,6 +11,7 @@
         var options = { delay: 200 };
 
         return {
+            scope: {},
             templateUrl: 'plugins/player/mouse.html',
             link: _link
         };

@@ -22,13 +22,12 @@
         };
 
         function _send(keys, windowName) {
-            $log.debug('send command: ' + keys);
-
             var serverUrl = _getServerUrl();
-            if (!serverUrl) {
-                return $q.when();
-            }
+            if (!serverUrl) return $q.when();
+
             var url = serverUrl + options.api.handle;
+
+            $log.debug('send command: ' + keys);
             windowName = windowName || '[ACTIVE]';
 
             return $http.post(url, { keys: keys, window: windowName }, { cache: false }).then(function (res) {
@@ -39,13 +38,17 @@
         }
 
         function _mouseMove(orientation, step, times) {
-            $log.debug("mouse move: orientation=%s, step=%s, times=%s", orientation, step, times);
-
             var serverUrl = _getServerUrl();
-            if (!serverUrl) {
+            if (!serverUrl) return $q.when();
+
+            if (orientation !== 'vertical' && orientation !== 'horizontal') {
+                notification.error('Orientation is not specified.', 'Programming Argument Error');
                 return $q.when();
             }
+
             var url = serverUrl + options.api.mouse.move + '/' + orientation;
+
+            $log.debug("mouse move: orientation=%s, step=%s, times=%s", orientation, step, times);
 
             return $http.post(url, { step: step, times: times }, { cache: false }).then(function (res) {
                 $log.debug('Success: ', res);

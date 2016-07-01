@@ -3,8 +3,7 @@
 
     angular.module('handlio.client.plugins', [
         'handlio.client.core',
-        'handlio.client.screen',
-        'handlio.client.plugins.player'
+        'handlio.client.screen'
     ]);
 
 })(angular);

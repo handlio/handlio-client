@@ -107,20 +107,24 @@ test("Command service: ", function (assert) {
         $provide.value('notification', _getNotificationMock());
     });
 
+    var http = 'http://';
+    var handleUrl = http + testUrl + '/api/handle';
+    var verticalMoveUrl = http + testUrl + '/api/mouse/move/vertical';
+    var horizontalMoveUrl = http + testUrl + '/api/mouse/move/horizontal';
+
     inject(function ($httpBackend, CommandService, notification) {
 
-        var route = 'http://' + testUrl + '/api/handle';
-        $httpBackend.when('POST', route).respond({});
+        $httpBackend.when('POST', handleUrl).respond({});
 
         assert.doesNotThrow(function () {
-            $httpBackend.expect('POST', route, { keys: 'Keys', window: 'Test' }).respond(200, '');
+            $httpBackend.expect('POST', handleUrl, { keys: 'Keys', window: 'Test' }).respond(200, '');
             CommandService.send('Keys', 'Test').then(_success(assert), _failed(assert));
         }, 'should send successfully with all arguments');
 
         assert.doesNotThrow(function () {
             $httpBackend.flush();
 
-            $httpBackend.expect('POST', route, { keys: 'Keys', window: '[ACTIVE]' }).respond(200, '');
+            $httpBackend.expect('POST', handleUrl, { keys: 'Keys', window: '[ACTIVE]' }).respond(200, '');
             CommandService.send('Keys').then(_success(assert), _failed(assert));
         }, "should send successfully without window argument. should use '[ACTIVE]' window argument");
 
@@ -137,13 +141,59 @@ test("Command service: ", function (assert) {
         state.host = { url: testUrl };
 
         assert.doesNotThrow(function () {
-            $httpBackend.expect('POST', route, { keys: '', window: '[ACTIVE]' }).respond(400);
+            $httpBackend.expect('POST', handleUrl, { keys: '', window: '[ACTIVE]' }).respond(400);
             CommandService.send('').then(_success(assert), _failed(assert));
             $httpBackend.flush();
         }, "should throw an error when keys is not specified");
 
+        assert.doesNotThrow(function () {
+            $httpBackend.expect('POST', verticalMoveUrl, { step: 10, times: 3 }).respond(200, '');
+            CommandService.mouse.move('vertical', 10, 3).then(_success(assert), _failed(assert));
+            $httpBackend.flush();
+        }, 'should successfully send mouse move  vertically requests with all arguments');
+
+        assert.doesNotThrow(function () {
+            $httpBackend.expect('POST', horizontalMoveUrl, { step: 10, times: 3 }).respond(200, '');
+            CommandService.mouse.move('horizontal', 10, 3).then(_success(assert), _failed(assert));
+            $httpBackend.flush();
+        }, 'should successfully send mouse move horizontally requests with all arguments');
+
+        state.host = null;
+
+        assert.doesNotThrow(function () {
+            notification.mock.expectations = {};
+            notification.mock.expects('error').once();
+            CommandService.mouse.move().then(_success(assert), _failed(assert));
+            notification.mock.verify();
+        }, "should throw error notification when host is not set for mouse move");
+
+        state.host = { url: testUrl };
+
+        assert.doesNotThrow(function () {
+            notification.mock.expectations = {};
+            notification.mock.expects('error').once();
+            CommandService.mouse.move().then(_success(assert), _failed(assert));
+            notification.mock.verify();
+        }, "should throw error notification when orientation is not set for mouse move");
+
+        assert.doesNotThrow(function () {
+            notification.mock.expectations = {};
+            notification.mock.expects('error').once();
+            CommandService.mouse.move('111').then(_success(assert), _failed(assert));
+            notification.mock.verify();
+        }, "should throw error notification when orientation is set to wrong value for mouse move");
+
+        assert.doesNotThrow(function () {
+            notification.mock.expectations = {};
+            notification.mock.expects('error').once();
+            $httpBackend.expect('POST', horizontalMoveUrl, { step: '', times: 3 }).respond(400);
+            CommandService.mouse.move('horizontal', '', 3).then(_success(assert), _failed(assert));
+            $httpBackend.flush();
+            notification.mock.verify();
+        }, 'should throw an error when step is not specified');
+
         $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest()
+        $httpBackend.verifyNoOutstandingRequest();
     });
 
     assert.end();
