@@ -7,6 +7,7 @@ test("screen module", function (assert) {
 
     angular.mock.module('handlio.client.screen');
     angular.mock.module('handlio.client.plugins');
+    angular.mock.module('handlio.client.plugins.player');
     angular.mock.module('handlio.client.templateCache');
     angular.mock.module(function ($provide) {
     });
@@ -26,34 +27,14 @@ test("screen module", function (assert) {
         _$rootScope.$digest();
     }, "should successfully go to the index state");
 
-    assert.doesNotThrow(function () {
-        _$state.go('plugin', { plugin: 'player' });
-        _$rootScope.$digest();
-
-        var compileFn = _compileDirective(_$compile);
-
-        var scope = _$rootScope.$new();
-
-        var current = _$state.current;
-
-        current.controller(scope, _$state);
-        assert.equal(scope.$state, _$state, "'player' state's controller scope should has $state");
-
-        var compiledElement = compileFn(current.template, scope);
-        assert.equal($(compiledElement).find('div.ng-scope[player]').length, 1, "should contains player directive inside");
-
-        assert.equal(_$state.current.name, 'plugin', "should be on plugin state");
-        assert.equal(_$stateParams.plugin, 'player', "should be on player plugin state");
-    }, "should successfully go to the plugin state");
-
     assert.end();
-
 });
 
 test("'dynamic-view' directive", function (assert) {
 
     angular.mock.module('handlio.client.screen');
     angular.mock.module('handlio.client.plugins');
+    angular.mock.module('handlio.client.plugins.player');
     angular.mock.module('handlio.client.templateCache');
     angular.mock.module(function ($provide) {
     });
@@ -76,6 +57,12 @@ test("'dynamic-view' directive", function (assert) {
         assert.equal($(compiledElement).find('div.ng-scope[player]').length, 1, "should contains player directive inside");
     }, "should successfully compile 'dynamic-view' directive");
 
+    assert.throws(function () {
+        var scope = _$rootScope.$new();
+        compileFn('<div dynamic-view directive="\'nonexistent\'"></div>', scope);
+
+    }, "should fail when compile 'dynamic-view' directive with nonexistent plugin name");
+
     assert.end();
 });
 
@@ -85,6 +72,7 @@ test("Screen Controller", function (assert) {
 
     angular.mock.module('handlio.client.screen');
     angular.mock.module('handlio.client.plugins');
+    angular.mock.module('handlio.client.plugins.player');
     angular.mock.module('handlio.client.templateCache');
     angular.mock.module(function ($provide) {
         $provide.value('store', storeMock);

@@ -80,10 +80,11 @@ test("'Unique' directive ", function (assert) {
 test("'Toggle action' directive ", function (assert) { // eslint-disable-line max-statements
     angular.mock.module('handlio.client.components');
 
-    var _$compile, _$rootScope;
-    inject(['$compile', '$rootScope', '$timeout', function ($compile, $rootScope) {
+    var _$compile, _$rootScope, _$timeout;
+    inject(['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
         _$compile = $compile;
         _$rootScope = $rootScope;
+        _$timeout = $timeout;
     }]);
 
     var scope = _$rootScope.$new();
@@ -169,30 +170,20 @@ test("'Toggle action' directive ", function (assert) { // eslint-disable-line ma
     assert.equal(isolatedScope.toggleAction.fn, scope.behaviour.fn, "should change object from external scope when isolatedScope is changed");
     isolatedScope.$destroy();
 
-    // todo:
-    // scope.$destroy();
-    // scope = _$rootScope.$new();
-    // var callback = sinon.spy();
-    //
-    // scope.behaviour = { fn: callback, value: false };
-    //
-    // compiled = _$compile(element)(scope);
-    // scope.$digest();
-    //
-    // isolatedScope = compiled.isolateScope();
-    // assert.test("should not throw when input checked state has changed", function (assert) {
-    //     assert.plan(2);
-    //
-    //     assert.doesNotThrow(function () {
-    //         element.prop("checked", true);
-    //         scope.$apply();
-    //         // $timeout.flush();
-    //
-    //         // setTimeout(function () {
-    //             assert.true(callback.calledOnce);
-    //         // }, 300);
-    //     });
-    // });
+    var callback = sinon.spy();
+
+    scope.behaviour = { fn: callback, value: false };
+
+    compiled = _$compile(element)(scope);
+    isolatedScope = compiled.isolateScope();
+    isolatedScope.$digest();
+
+    assert.doesNotThrow(function () {
+        $(element[0]).bootstrapToggle('on');
+        _$timeout.flush();
+
+        assert.true(isolatedScope.toggleAction.fn.calledOnce, "should call callback inside after toggling checkbox");
+    }, "should not throw when input checked state has changed");
 
     assert.end();
 });

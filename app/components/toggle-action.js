@@ -25,11 +25,11 @@
             if (typeof toggleInitialValue !== 'boolean')
                 throw new Error("Value was not provided.");
 
-            $(element).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
+            $(element[0]).bootstrapToggle(toggleInitialValue ? 'on' : 'off');
 
-            $(element).change(function () {
+            $(element[0]).change(function () {
                 $timeout(function () {
-                    scope.toggleAction.fn(angular.element(element).prop('checked'));
+                    scope.toggleAction.fn(angular.element(element[0]).prop('checked'));
                 }, 0);
             });
         }
