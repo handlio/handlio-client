@@ -8,7 +8,7 @@
 
     function _directive(CommandService) {
 
-        var options = { delay: 200 };
+        var options = { delay: 100 };
 
         return {
             scope: {},
