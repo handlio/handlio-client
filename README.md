@@ -26,7 +26,7 @@ You can configure IPs where your servers have been run and switch between them.
 
 #Screenshots:
 
-![Default Possibilities](/content/1.png =250x)
-![Server Configuration](/content/2.png =250x)
-![Send commands](/content/3.png =250x)
-![Opened configuration and send command dialogs](/content/4.png =250x)
+<img src="/content/1.png" alt="Default Possibilities" style="width: 250px;"/>
+<img src="/content/2.png" alt="Server Configuration" style="width: 250px;"/>
+<img src="/content/3.png" alt="Send commands" style="width: 250px;"/>
+<img src="/content/4.png" alt="Opened configuration and send command dialogs" style="width: 250px;"/>
