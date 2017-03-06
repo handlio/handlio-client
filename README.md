@@ -23,3 +23,10 @@ Code-Quality: [![Code Climate](https://codeclimate.com/github/handlio/handlio-cl
 ###Configuration
 
 You can configure IPs where your servers have been run and switch between them.
+
+#Screenshots:
+
+![Default Possibilities](/content/1.png)
+![Server Configuration](/content/2.png)
+![Send commands](/content/3.png)
+![Opened configuration and send command dialogs](/content/4.png)
